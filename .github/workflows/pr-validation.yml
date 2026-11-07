@@ -93,18 +93,54 @@ jobs:
           docker build -t local/voting-app-vote:pr ./vote
           docker build -t local/voting-app-result:pr ./result
           docker build -t local/voting-app-worker:pr ./worker
-      - name: Scan repository dependencies with Trivy (SCA)
+      - name: Prepare scan reports
+        run: mkdir -p security-reports
+      - name: Scan repository dependencies with Trivy (Hard Fail)
         uses: aquasecurity/trivy-action@v0.36.0
         with:
           scan-type: fs
           scan-ref: .
           format: table
-          severity: HIGH,CRITICAL
-          exit-code: '0'
-      - name: Scan Vote image with Trivy
+          output: security-reports/dependencies.txt
+          severity: CRITICAL
+          ignore-unfixed: true
+          exit-code: '1'
+      - name: Scan Vote image with Trivy (Hard Fail)
+        if: ${{ !cancelled() }}
         uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: local/voting-app-vote:pr
           format: table
-          severity: HIGH,CRITICAL
-          exit-code: '0'
+          output: security-reports/vote.txt
+          severity: CRITICAL
+          ignore-unfixed: true
+          exit-code: '1'
+      - name: Scan Result image with Trivy (Hard Fail)
+        if: ${{ !cancelled() }}
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: local/voting-app-result:pr
+          format: table
+          output: security-reports/result.txt
+          severity: CRITICAL
+          ignore-unfixed: true
+          exit-code: '1'
+      - name: Scan Worker image with Trivy (Hard Fail)
+        if: ${{ !cancelled() }}
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: local/voting-app-worker:pr
+          format: table
+          output: security-reports/worker.txt
+          severity: CRITICAL
+          ignore-unfixed: true
+          exit-code: '1'
+      - name: Show Trivy vulnerability tables
+        if: always()
+        run: cat security-reports/*.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: trivy-security-reports
+          path: security-reports/
+          if-no-files-found: warn
