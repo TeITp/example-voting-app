@@ -1,25 +1,16 @@
-FROM node:18-slim
-
-# add curl for healthcheck
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends curl tini && \
-    rm -rf /var/lib/apt/lists/*
-
+FROM node:24-bookworm-slim AS base
 WORKDIR /usr/local/app
-
-# have nodemon available for local dev use (file watching)
-RUN npm install -g nodemon
-
 COPY package*.json ./
+RUN npm ci --omit=dev && npm cache clean --force && mv node_modules /node_modules
+ENV PORT=8080
+EXPOSE 8080
 
-RUN npm ci && \
- npm cache clean --force && \
- mv /usr/local/app/node_modules /node_modules
+FROM base AS dev
+COPY --chown=node:node . .
+USER node
+CMD ["node", "--watch", "server.js"]
 
-COPY . .
-
-ENV PORT=80
-EXPOSE 80
-
-ENTRYPOINT ["/usr/bin/tini", "--"]
+FROM base AS final
+COPY --chown=node:node . .
+USER node
 CMD ["node", "server.js"]
