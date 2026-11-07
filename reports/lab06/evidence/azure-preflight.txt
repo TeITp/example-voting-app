@@ -1,0 +1,7 @@
+Azure VM inspection through Azure Portal Run Command, 2026-11-07.
+Docker version 29.9.0
+Initial container: hello-world, Exited (0).
+git version 2.43.0
+Docker Compose version v5.6.0
+Available disk space: 23G.
+No Container Registry appeared among the 10 resources in the active Azure for Students subscription.

@@ -1,0 +1,12 @@
+Microsoft.Extensions.DependencyInjection.Abstractions.dll
+Microsoft.Extensions.Logging.Abstractions.dll
+Newtonsoft.Json.dll
+Npgsql.dll
+RESPite.dll
+StackExchange.Redis.dll
+System.IO.Hashing.dll
+Worker
+Worker.deps.json
+Worker.dll
+Worker.pdb
+Worker.runtimeconfig.json

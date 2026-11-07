@@ -1,0 +1,539 @@
+﻿2026-11-07T01:21:41.8494201Z ##[group]Run aquasecurity/trivy-action@v0.36.0
+2026-11-07T01:21:41.8494487Z with:
+2026-11-07T01:21:41.8494678Z   image-ref: local/voting-app-vote:pr
+2026-11-07T01:21:41.8494900Z   format: table
+2026-11-07T01:21:41.8495088Z   severity: HIGH,CRITICAL
+2026-11-07T01:21:41.8495282Z   exit-code: 0
+2026-11-07T01:21:41.8495457Z   scan-type: image
+2026-11-07T01:21:41.8495638Z   scan-ref: .
+2026-11-07T01:21:41.8495821Z   ignore-unfixed: false
+2026-11-07T01:21:41.8496013Z   vuln-type: os,library
+2026-11-07T01:21:41.8496313Z   cache-dir: /home/runner/work/example-voting-app/example-voting-app/.cache/trivy
+2026-11-07T01:21:41.8496647Z   list-all-pkgs: false
+2026-11-07T01:21:41.8496843Z   version: v0.70.0
+2026-11-07T01:21:41.8497009Z   cache: true
+2026-11-07T01:21:41.8497183Z   skip-setup-trivy: false
+2026-11-07T01:21:41.8499047Z   token-setup-trivy: ***
+2026-11-07T01:21:41.8499249Z ##[endgroup]
+2026-11-07T01:21:41.8504730Z ##[start-action display=Install Trivy;id=__aquasecurity_trivy-action_2.__aquasecurity_setup-trivy]
+2026-11-07T01:21:41.8660493Z ##[group]Run aquasecurity/setup-trivy@3fb12ec12f41e471780db15c232d5dd185dcb514
+2026-11-07T01:21:41.8660820Z with:
+2026-11-07T01:21:41.8660992Z   version: v0.70.0
+2026-11-07T01:21:41.8661169Z   cache: true
+2026-11-07T01:21:41.8662983Z   token: ***
+2026-11-07T01:21:41.8663172Z   path: $HOME/.local/bin
+2026-11-07T01:21:41.8663586Z   github-server-url: https://github.com
+2026-11-07T01:21:41.8663822Z ##[endgroup]
+2026-11-07T01:21:41.8668519Z ##[start-action display=Binary dir;id=__aquasecurity_trivy-action_2.__aquasecurity_setup-trivy.binary-dir]
+2026-11-07T01:21:41.8854818Z ##[group]Run echo "dir=$HOME/.local/bin/trivy-bin" >> $GITHUB_OUTPUT
+2026-11-07T01:21:41.8855205Z [36;1mecho "dir=$HOME/.local/bin/trivy-bin" >> $GITHUB_OUTPUT[0m
+2026-11-07T01:21:41.8899060Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-07T01:21:41.8899348Z ##[endgroup]
+2026-11-07T01:21:41.9544977Z ##[end-action id=__aquasecurity_trivy-action_2.__aquasecurity_setup-trivy.binary-dir;outcome=success;conclusion=success;duration_ms=87]
+2026-11-07T01:21:41.9547150Z ##[start-action display=Check the version for caching;id=__aquasecurity_trivy-action_2.__aquasecurity_setup-trivy.__run]
+2026-11-07T01:21:41.9551828Z ##[end-action id=__aquasecurity_trivy-action_2.__aquasecurity_setup-trivy.__run;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-11-07T01:21:41.9553709Z ##[start-action display=Restore Trivy binary from cache;id=__aquasecurity_trivy-action_2.__aquasecurity_setup-trivy.cache]
+2026-11-07T01:21:41.9818223Z ##[group]Run actions/cache/restore@9255dc7a253b0ccc959486e2bca901246202afeb
+2026-11-07T01:21:41.9818539Z with:
+2026-11-07T01:21:41.9818740Z   path: /home/runner/.local/bin/trivy-bin
+2026-11-07T01:21:41.9818991Z   key: trivy-binary-v0.70.0-Linux-X64
+2026-11-07T01:21:41.9819233Z   enableCrossOsArchive: false
+2026-11-07T01:21:41.9819444Z   fail-on-cache-miss: false
+2026-11-07T01:21:41.9819646Z   lookup-only: false
+2026-11-07T01:21:41.9819833Z ##[endgroup]
+2026-11-07T01:21:42.3312930Z Cache hit for: trivy-binary-v0.70.0-Linux-X64
+2026-11-07T01:21:43.6188784Z Received 25165824 of 43744516 (57.5%), 24.0 MBs/sec
+2026-11-07T01:21:43.7858098Z Received 43744516 of 43744516 (100.0%), 35.7 MBs/sec
+2026-11-07T01:21:43.7858598Z Cache Size: ~42 MB (43744516 B)
+2026-11-07T01:21:43.7879727Z [command]/usr/bin/tar -xf /home/runner/work/_temp/94660dec-e510-49e2-820b-137f1da9f0c8/cache.tzst -P -C /home/runner/work/example-voting-app/example-voting-app --use-compress-program unzstd
+2026-11-07T01:21:44.0894759Z Cache restored successfully
+2026-11-07T01:21:44.3343171Z Cache restored from key: trivy-binary-v0.70.0-Linux-X64
+2026-11-07T01:21:44.3460350Z ##[end-action id=__aquasecurity_trivy-action_2.__aquasecurity_setup-trivy.cache;outcome=success;conclusion=success;duration_ms=2390]
+2026-11-07T01:21:44.3462704Z ##[start-action display=Checkout install script;id=__aquasecurity_trivy-action_2.__aquasecurity_setup-trivy.__actions_checkout]
+2026-11-07T01:21:44.3467307Z ##[end-action id=__aquasecurity_trivy-action_2.__aquasecurity_setup-trivy.__actions_checkout;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-11-07T01:21:44.3469542Z ##[start-action display=Install Trivy;id=__aquasecurity_trivy-action_2.__aquasecurity_setup-trivy.__run_2]
+2026-11-07T01:21:44.3473182Z ##[end-action id=__aquasecurity_trivy-action_2.__aquasecurity_setup-trivy.__run_2;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-11-07T01:21:44.3475121Z ##[start-action display=Add Trivy binary to $GITHUB_PATH;id=__aquasecurity_trivy-action_2.__aquasecurity_setup-trivy.__run_3]
+2026-11-07T01:21:44.3597347Z ##[group]Run echo /home/runner/.local/bin/trivy-bin >> $GITHUB_PATH
+2026-11-07T01:21:44.3597950Z [36;1mecho /home/runner/.local/bin/trivy-bin >> $GITHUB_PATH[0m
+2026-11-07T01:21:44.3645162Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-07T01:21:44.3645480Z ##[endgroup]
+2026-11-07T01:21:44.4063842Z ##[end-action id=__aquasecurity_trivy-action_2.__aquasecurity_setup-trivy.__run_3;outcome=success;conclusion=success;duration_ms=58]
+2026-11-07T01:21:44.4066080Z ##[start-action display=Save Trivy binary to cache;id=__aquasecurity_trivy-action_2.__aquasecurity_setup-trivy.__actions_cache]
+2026-11-07T01:21:44.4071924Z ##[end-action id=__aquasecurity_trivy-action_2.__aquasecurity_setup-trivy.__actions_cache;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-11-07T01:21:44.4076590Z ##[end-action id=__aquasecurity_trivy-action_2.__aquasecurity_setup-trivy;outcome=success;conclusion=success;duration_ms=2557]
+2026-11-07T01:21:44.4078189Z ##[start-action display=Get current date;id=__aquasecurity_trivy-action_2.date]
+2026-11-07T01:21:44.4578745Z ##[group]Run echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+2026-11-07T01:21:44.4579104Z [36;1mecho "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT[0m
+2026-11-07T01:21:44.4624028Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-07T01:21:44.4624354Z ##[endgroup]
+2026-11-07T01:21:44.5738768Z ##[end-action id=__aquasecurity_trivy-action_2.date;outcome=success;conclusion=success;duration_ms=165]
+2026-11-07T01:21:44.5741182Z ##[start-action display=Restore DB from cache;id=__aquasecurity_trivy-action_2.__actions_cache]
+2026-11-07T01:21:44.6519310Z ##[group]Run actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae
+2026-11-07T01:21:44.6519721Z with:
+2026-11-07T01:21:44.6520074Z   path: /home/runner/work/example-voting-app/example-voting-app/.cache/trivy
+2026-11-07T01:21:44.6520518Z   key: cache-trivy-2026-11-07
+2026-11-07T01:21:44.6520805Z   restore-keys: cache-trivy-
+2026-11-07T01:21:44.6521025Z   enableCrossOsArchive: false
+2026-11-07T01:21:44.6521237Z   fail-on-cache-miss: false
+2026-11-07T01:21:44.6521441Z   lookup-only: false
+2026-11-07T01:21:44.6521632Z   save-always: false
+2026-11-07T01:21:44.6521816Z ##[endgroup]
+2026-11-07T01:21:44.9896313Z Cache not found for input keys: cache-trivy-2026-11-07, cache-trivy-
+2026-11-07T01:21:44.9960633Z ##[end-action id=__aquasecurity_trivy-action_2.__actions_cache;outcome=success;conclusion=success;duration_ms=421]
+2026-11-07T01:21:44.9965450Z ##[start-action display=Set GitHub Path;id=__aquasecurity_trivy-action_2.__run]
+2026-11-07T01:21:44.9987999Z ##[group]Run echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
+2026-11-07T01:21:44.9988538Z [36;1mecho "$GITHUB_ACTION_PATH" >> $GITHUB_PATH[0m
+2026-11-07T01:21:45.0035409Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-07T01:21:45.0035708Z env:
+2026-11-07T01:21:45.0036002Z   GITHUB_ACTION_PATH: /home/runner/work/_actions/aquasecurity/trivy-action/v0.36.0
+2026-11-07T01:21:45.0036340Z ##[endgroup]
+2026-11-07T01:21:45.0105359Z ##[end-action id=__aquasecurity_trivy-action_2.__run;outcome=success;conclusion=success;duration_ms=13]
+2026-11-07T01:21:45.0108050Z ##[start-action display=Clear Trivy Envs file;id=__aquasecurity_trivy-action_2.__run_2]
+2026-11-07T01:21:45.0122491Z ##[group]Run rm -f trivy_envs.txt
+2026-11-07T01:21:45.0122745Z [36;1mrm -f trivy_envs.txt[0m
+2026-11-07T01:21:45.0122956Z [36;1mtouch trivy_envs.txt[0m
+2026-11-07T01:21:45.0160170Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-07T01:21:45.0160636Z ##[endgroup]
+2026-11-07T01:21:45.0267423Z ##[end-action id=__aquasecurity_trivy-action_2.__run_2;outcome=success;conclusion=success;duration_ms=15]
+2026-11-07T01:21:45.0271469Z ##[start-action display=Set Trivy environment variables;id=__aquasecurity_trivy-action_2.__run_3]
+2026-11-07T01:21:45.0286589Z ##[group]Run # Note: There is currently no way to distinguish between undefined variables and empty strings in GitHub Actions.
+2026-11-07T01:21:45.0287270Z [36;1m# Note: There is currently no way to distinguish between undefined variables and empty strings in GitHub Actions.[0m
+2026-11-07T01:21:45.0287782Z [36;1m# This limitation affects how we handle default values and empty inputs.[0m
+2026-11-07T01:21:45.0288272Z [36;1m# For more information, see: https://github.com/actions/runner/issues/924[0m
+2026-11-07T01:21:45.0288605Z [36;1m[0m
+2026-11-07T01:21:45.0288925Z [36;1m# The following logic implements the configuration priority described in the README:[0m
+2026-11-07T01:21:45.0289458Z [36;1m#[0m
+2026-11-07T01:21:45.0289627Z [36;1m# Inputs[0m
+2026-11-07T01:21:45.0289827Z [36;1m# Environment Variables[0m
+2026-11-07T01:21:45.0290047Z [36;1m# Config File[0m
+2026-11-07T01:21:45.0290241Z [36;1m# Defaults[0m
+2026-11-07T01:21:45.0290433Z [36;1m#[0m
+2026-11-07T01:21:45.0290769Z [36;1m# As noted above defaults are awkward to handle as GitHub Actions will inject those values as the input[0m
+2026-11-07T01:21:45.0291303Z [36;1m# if the caller doesn't provide them, thus if the input matches the default we don't set it as we[0m
+2026-11-07T01:21:45.0291822Z [36;1m# can't tell the difference.  Plus if we did set it when it was the default value then it could potentially[0m
+2026-11-07T01:21:45.0292408Z [36;1m# override an external environment variable, or something in the callers configuration file, which then wouldn't[0m
+2026-11-07T01:21:45.0292882Z [36;1m# match the configuration priority that is documented.[0m
+2026-11-07T01:21:45.0293181Z [36;1mset_env_var_if_provided() {[0m
+2026-11-07T01:21:45.0293691Z [36;1m  local var_name="$1"[0m
+2026-11-07T01:21:45.0293910Z [36;1m  local input_value="$2"[0m
+2026-11-07T01:21:45.0294142Z [36;1m  local default_value="$3"[0m
+2026-11-07T01:21:45.0294357Z [36;1m[0m
+2026-11-07T01:21:45.0294603Z [36;1m  if [ -n "$input_value" ] && [ "$input_value" != "$default_value" ]; then[0m
+2026-11-07T01:21:45.0295004Z [36;1m    # If action was provided with explicit input by the caller set that[0m
+2026-11-07T01:21:45.0295426Z [36;1m    # Use printf %q to safely escape special characters and prevent command injection[0m
+2026-11-07T01:21:45.0295849Z [36;1m    printf 'export %s=%q\n' "$var_name" "$input_value" >> trivy_envs.txt[0m
+2026-11-07T01:21:45.0296142Z [36;1m  fi[0m
+2026-11-07T01:21:45.0296312Z [36;1m}[0m
+2026-11-07T01:21:45.0296487Z [36;1m[0m
+2026-11-07T01:21:45.0296735Z [36;1m# Set environment variables, handling those with default values[0m
+2026-11-07T01:21:45.0297205Z [36;1m# cf. https://aquasecurity.github.io/trivy/latest/docs/configuration/#environment-variables[0m
+2026-11-07T01:21:45.0297646Z [36;1mset_env_var_if_provided "TRIVY_INPUT" "$INPUT_INPUT" ""[0m
+2026-11-07T01:21:45.0297992Z [36;1mset_env_var_if_provided "TRIVY_EXIT_CODE" "$INPUT_EXIT_CODE" ""[0m
+2026-11-07T01:21:45.0298389Z [36;1mset_env_var_if_provided "TRIVY_IGNORE_UNFIXED" "$INPUT_IGNORE_UNFIXED" "false"[0m
+2026-11-07T01:21:45.0298812Z [36;1mset_env_var_if_provided "TRIVY_PKG_TYPES" "$INPUT_VULN_TYPE" "os,library"[0m
+2026-11-07T01:21:45.0299279Z [36;1mset_env_var_if_provided "TRIVY_SEVERITY" "$INPUT_SEVERITY" "UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL"[0m
+2026-11-07T01:21:45.0299702Z [36;1mset_env_var_if_provided "TRIVY_FORMAT" "$INPUT_FORMAT" "table"[0m
+2026-11-07T01:21:45.0300058Z [36;1mset_env_var_if_provided "TRIVY_TEMPLATE" "$INPUT_TEMPLATE" ""[0m
+2026-11-07T01:21:45.0300394Z [36;1mset_env_var_if_provided "TRIVY_OUTPUT" "$INPUT_OUTPUT" ""[0m
+2026-11-07T01:21:45.0300759Z [36;1mset_env_var_if_provided "TRIVY_SKIP_DIRS" "$INPUT_SKIP_DIRS" ""[0m
+2026-11-07T01:21:45.0301247Z [36;1mset_env_var_if_provided "TRIVY_SKIP_FILES" "$INPUT_SKIP_FILES" ""[0m
+2026-11-07T01:21:45.0301601Z [36;1mset_env_var_if_provided "TRIVY_TIMEOUT" "$INPUT_TIMEOUT" ""[0m
+2026-11-07T01:21:45.0301973Z [36;1mset_env_var_if_provided "TRIVY_IGNORE_POLICY" "$INPUT_IGNORE_POLICY" ""[0m
+2026-11-07T01:21:45.0302344Z [36;1mset_env_var_if_provided "TRIVY_QUIET" "$INPUT_HIDE_PROGRESS" ""[0m
+2026-11-07T01:21:45.0302726Z [36;1mset_env_var_if_provided "TRIVY_LIST_ALL_PKGS" "$INPUT_LIST_ALL_PKGS" "false"[0m
+2026-11-07T01:21:45.0303104Z [36;1mset_env_var_if_provided "TRIVY_SCANNERS" "$INPUT_SCANNERS" ""[0m
+2026-11-07T01:21:45.0304069Z [36;1mset_env_var_if_provided "TRIVY_CONFIG" "$INPUT_TRIVY_CONFIG" ""[0m
+2026-11-07T01:21:45.0304422Z [36;1mset_env_var_if_provided "TRIVY_TF_VARS" "$INPUT_TF_VARS" ""[0m
+2026-11-07T01:21:45.0304775Z [36;1mset_env_var_if_provided "TRIVY_DOCKER_HOST" "$INPUT_DOCKER_HOST" ""[0m
+2026-11-07T01:21:45.0343836Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-07T01:21:45.0344142Z env:
+2026-11-07T01:21:45.0344314Z   INPUT_INPUT: 
+2026-11-07T01:21:45.0344502Z   INPUT_EXIT_CODE: 0
+2026-11-07T01:21:45.0344702Z   INPUT_IGNORE_UNFIXED: false
+2026-11-07T01:21:45.0344917Z   INPUT_VULN_TYPE: os,library
+2026-11-07T01:21:45.0345122Z   INPUT_SEVERITY: HIGH,CRITICAL
+2026-11-07T01:21:45.0345335Z   INPUT_FORMAT: table
+2026-11-07T01:21:45.0345521Z   INPUT_TEMPLATE: 
+2026-11-07T01:21:45.0345699Z   INPUT_OUTPUT: 
+2026-11-07T01:21:45.0345882Z   INPUT_SKIP_DIRS: 
+2026-11-07T01:21:45.0346056Z   INPUT_SKIP_FILES: 
+2026-11-07T01:21:45.0346235Z   INPUT_TIMEOUT: 
+2026-11-07T01:21:45.0346410Z   INPUT_IGNORE_POLICY: 
+2026-11-07T01:21:45.0346597Z   INPUT_HIDE_PROGRESS: 
+2026-11-07T01:21:45.0346790Z   INPUT_LIST_ALL_PKGS: false
+2026-11-07T01:21:45.0346987Z   INPUT_SCANNERS: 
+2026-11-07T01:21:45.0347155Z   INPUT_TRIVY_CONFIG: 
+2026-11-07T01:21:45.0347348Z   INPUT_TF_VARS: 
+2026-11-07T01:21:45.0347527Z   INPUT_DOCKER_HOST: 
+2026-11-07T01:21:45.0347716Z ##[endgroup]
+2026-11-07T01:21:45.0414727Z ##[end-action id=__aquasecurity_trivy-action_2.__run_3;outcome=success;conclusion=success;duration_ms=14]
+2026-11-07T01:21:45.0417143Z ##[start-action display=Run Trivy;id=__aquasecurity_trivy-action_2.__run_4]
+2026-11-07T01:21:45.0443627Z ##[group]Run entrypoint.sh
+2026-11-07T01:21:45.0443899Z [36;1mentrypoint.sh[0m
+2026-11-07T01:21:45.0481928Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-07T01:21:45.0482211Z env:
+2026-11-07T01:21:45.0482391Z   INPUT_SCAN_TYPE: image
+2026-11-07T01:21:45.0482618Z   INPUT_IMAGE_REF: local/voting-app-vote:pr
+2026-11-07T01:21:45.0482863Z   INPUT_SCAN_REF: .
+2026-11-07T01:21:45.0483046Z   INPUT_TRIVYIGNORES: 
+2026-11-07T01:21:45.0483410Z   INPUT_GITHUB_PAT: 
+2026-11-07T01:21:45.0483613Z   INPUT_LIMIT_SEVERITIES_FOR_SARIF: 
+2026-11-07T01:21:45.0483954Z   TRIVY_CACHE_DIR: /home/runner/work/example-voting-app/example-voting-app/.cache/trivy
+2026-11-07T01:21:45.0484318Z ##[endgroup]
+2026-11-07T01:21:45.0576225Z Running Trivy with options: trivy image local/voting-app-vote:pr
+2026-11-07T01:21:45.1063412Z 2026-11-07T01:21:45Z	INFO	[vuln] Vulnerability scanning is enabled
+2026-11-07T01:21:45.1064148Z 2026-11-07T01:21:45Z	INFO	[secret] Secret scanning is enabled
+2026-11-07T01:21:45.1085307Z 2026-11-07T01:21:45Z	INFO	[secret] If your scanning is slow, please try '--scanners vuln' to disable secret scanning
+2026-11-07T01:21:45.1096878Z 2026-11-07T01:21:45Z	INFO	[secret] Please see https://trivy.dev/docs/v0.70/guide/scanner/secret#recommendation for faster secret detection
+2026-11-07T01:21:46.3843767Z 2026-11-07T01:21:46Z	INFO	[python] Licenses acquired from one or more METADATA files may be subject to additional terms. Use `--debug` flag to see all affected packages.
+2026-11-07T01:21:46.7667398Z 2026-11-07T01:21:46Z	INFO	Detected OS	family="debian" version="13.7"
+2026-11-07T01:21:46.7667937Z 2026-11-07T01:21:46Z	INFO	[debian] Detecting vulnerabilities...	os_version="13" pkg_num=109
+2026-11-07T01:21:46.7790566Z 2026-11-07T01:21:46Z	INFO	Number of language-specific files	num=1
+2026-11-07T01:21:46.7791339Z 2026-11-07T01:21:46Z	INFO	[python-pkg] Detecting vulnerabilities...
+2026-11-07T01:21:46.7804944Z 2026-11-07T01:21:46Z	WARN	Using severities from other vendors for some vulnerabilities. Read https://trivy.dev/docs/v0.70/guide/scanner/vulnerability#severity-selection for details.
+2026-11-07T01:21:46.8137400Z 2026-11-07T01:21:46Z	INFO	Table result includes only package filenames. Use '--format json' option to get the full path to the package file.
+2026-11-07T01:21:46.8144641Z 
+2026-11-07T01:21:46.8144852Z Report Summary
+2026-11-07T01:21:46.8145025Z 
+2026-11-07T01:21:46.8145739Z ┌──────────────────────────────────────────────────────────────────────────────────┬────────────┬─────────────────┬─────────┐
+2026-11-07T01:21:46.8146292Z │                                      Target                                      │    Type    │ Vulnerabilities │ Secrets │
+2026-11-07T01:21:46.8147486Z ├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+2026-11-07T01:21:46.8148446Z │ local/voting-app-vote:pr (debian 13.7)                                           │   debian   │       53        │    -    │
+2026-11-07T01:21:46.8149337Z ├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+2026-11-07T01:21:46.8150309Z │ usr/local/lib/python3.11/site-packages/blinker-1.9.0.dist-info/METADATA          │ python-pkg │        0        │    -    │
+2026-11-07T01:21:46.8151331Z ├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+2026-11-07T01:21:46.8152338Z │ usr/local/lib/python3.11/site-packages/click-8.5.1.dist-info/METADATA            │ python-pkg │        0        │    -    │
+2026-11-07T01:21:46.8153413Z ├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+2026-11-07T01:21:46.8154531Z │ usr/local/lib/python3.11/site-packages/flask-3.1.3.dist-info/METADATA            │ python-pkg │        0        │    -    │
+2026-11-07T01:21:46.8155379Z ├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+2026-11-07T01:21:46.8155979Z │ usr/local/lib/python3.11/site-packages/gunicorn-26.2.0.dist-info/METADATA        │ python-pkg │        0        │    -    │
+2026-11-07T01:21:46.8156615Z ├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+2026-11-07T01:21:46.8157195Z │ usr/local/lib/python3.11/site-packages/itsdangerous-2.2.0.dist-info/METADATA     │ python-pkg │        0        │    -    │
+2026-11-07T01:21:46.8157836Z ├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+2026-11-07T01:21:46.8158147Z 
+2026-11-07T01:21:46.8158427Z 📣 [34mNotices:[0m
+2026-11-07T01:21:46.8158698Z   - Version 0.76.2 of Trivy is now available, current version is 0.70.0
+2026-11-07T01:21:46.8159043Z 
+2026-11-07T01:21:46.8159232Z To suppress version checks, run Trivy scans with the --skip-version-check flag
+2026-11-07T01:21:46.8159490Z 
+2026-11-07T01:21:46.8159856Z │ usr/local/lib/python3.11/site-packages/jinja2-3.1.6.dist-info/METADATA           │ python-pkg │        0        │    -    │
+2026-11-07T01:21:46.8160488Z ├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+2026-11-07T01:21:46.8161091Z │ usr/local/lib/python3.11/site-packages/markupsafe-3.0.4.dist-info/METADATA       │ python-pkg │        0        │    -    │
+2026-11-07T01:21:46.8161711Z ├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+2026-11-07T01:21:46.8162298Z │ usr/local/lib/python3.11/site-packages/packaging-26.3.dist-info/METADATA         │ python-pkg │        0        │    -    │
+2026-11-07T01:21:46.8162954Z ├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+2026-11-07T01:21:46.8163871Z │ usr/local/lib/python3.11/site-packages/pip-24.0.dist-info/METADATA               │ python-pkg │        0        │    -    │
+2026-11-07T01:21:46.8164804Z ├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+2026-11-07T01:21:46.8165609Z │ usr/local/lib/python3.11/site-packages/redis-8.1.0.dist-info/METADATA            │ python-pkg │        0        │    -    │
+2026-11-07T01:21:46.8166511Z ├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+2026-11-07T01:21:46.8167453Z │ usr/local/lib/python3.11/site-packages/setuptools-79.0.1.dist-info/METADATA      │ python-pkg │        0        │    -    │
+2026-11-07T01:21:46.8168502Z ├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+2026-11-07T01:21:46.8169694Z │ usr/local/lib/python3.11/site-packages/setuptools/_vendor/autocommand-2.2.2.dis- │ python-pkg │        0        │    -    │
+2026-11-07T01:21:46.8170629Z │ t-info/METADATA                                                                  │            │                 │         │
+2026-11-07T01:21:46.8171464Z ├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+2026-11-07T01:21:46.8172437Z │ usr/local/lib/python3.11/site-packages/setuptools/_vendor/backports.tarfile-1.2- │ python-pkg │        0        │    -    │
+2026-11-07T01:21:46.8173631Z │ .0.dist-info/METADATA                                                            │            │                 │         │
+2026-11-07T01:21:46.8174451Z ├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+2026-11-07T01:21:46.8175686Z │ usr/local/lib/python3.11/site-packages/setuptools/_vendor/importlib_metadata-8.- │ python-pkg │        0        │    -    │
+2026-11-07T01:21:46.8176988Z │ 0.0.dist-info/METADATA                                                           │            │                 │         │
+2026-11-07T01:21:46.8177884Z ├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+2026-11-07T01:21:46.8178876Z │ usr/local/lib/python3.11/site-packages/setuptools/_vendor/inflect-7.3.1.dist-in- │ python-pkg │        0        │    -    │
+2026-11-07T01:21:46.8179836Z │ fo/METADATA                                                                      │            │                 │         │
+2026-11-07T01:21:46.8180677Z ├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+2026-11-07T01:21:46.8181731Z │ usr/local/lib/python3.11/site-packages/setuptools/_vendor/jaraco.collections-5.- │ python-pkg │        0        │    -    │
+2026-11-07T01:21:46.8182877Z │ 1.0.dist-info/METADATA                                                           │            │                 │         │
+2026-11-07T01:21:46.8183876Z ├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+2026-11-07T01:21:46.8184512Z │ usr/local/lib/python3.11/site-packages/setuptools/_vendor/jaraco.context-5.3.0.- │ python-pkg │        1        │    -    │
+2026-11-07T01:21:46.8185125Z │ dist-info/METADATA                                                               │            │                 │         │
+2026-11-07T01:21:46.8185647Z ├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+2026-11-07T01:21:46.8186277Z │ usr/local/lib/python3.11/site-packages/setuptools/_vendor/jaraco.functools-4.0.- │ python-pkg │        0        │    -    │
+2026-11-07T01:21:46.8187086Z │ 1.dist-info/METADATA                                                             │            │                 │         │
+2026-11-07T01:21:46.8187732Z ├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+2026-11-07T01:21:46.8188321Z │ usr/local/lib/python3.11/site-packages/setuptools/_vendor/jaraco.text-3.12.1.di- │ python-pkg │        0        │    -    │
+2026-11-07T01:21:46.8188892Z │ st-info/METADATA                                                                 │            │                 │         │
+2026-11-07T01:21:46.8189397Z ├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+2026-11-07T01:21:46.8189978Z │ usr/local/lib/python3.11/site-packages/setuptools/_vendor/more_itertools-10.3.0- │ python-pkg │        0        │    -    │
+2026-11-07T01:21:46.8190569Z │ .dist-info/METADATA                                                              │            │                 │         │
+2026-11-07T01:21:46.8191114Z ├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+2026-11-07T01:21:46.8191699Z │ usr/local/lib/python3.11/site-packages/setuptools/_vendor/packaging-24.2.dist-i- │ python-pkg │        0        │    -    │
+2026-11-07T01:21:46.8192257Z │ nfo/METADATA                                                                     │            │                 │         │
+2026-11-07T01:21:46.8192758Z ├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+2026-11-07T01:21:46.8193517Z │ usr/local/lib/python3.11/site-packages/setuptools/_vendor/platformdirs-4.2.2.di- │ python-pkg │        0        │    -    │
+2026-11-07T01:21:46.8194101Z │ st-info/METADATA                                                                 │            │                 │         │
+2026-11-07T01:21:46.8194608Z ├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+2026-11-07T01:21:46.8195601Z │ usr/local/lib/python3.11/site-packages/setuptools/_vendor/tomli-2.0.1.dist-info- │ python-pkg │        0        │    -    │
+2026-11-07T01:21:46.8196574Z │ /METADATA                                                                        │            │                 │         │
+2026-11-07T01:21:46.8197419Z ├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+2026-11-07T01:21:46.8198119Z │ usr/local/lib/python3.11/site-packages/setuptools/_vendor/typeguard-4.3.0.dist-- │ python-pkg │        0        │    -    │
+2026-11-07T01:21:46.8198697Z │ info/METADATA                                                                    │            │                 │         │
+2026-11-07T01:21:46.8199211Z ├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+2026-11-07T01:21:46.8200014Z │ usr/local/lib/python3.11/site-packages/setuptools/_vendor/typing_extensions-4.1- │ python-pkg │        0        │    -    │
+2026-11-07T01:21:46.8200640Z │ 2.2.dist-info/METADATA                                                           │            │                 │         │
+2026-11-07T01:21:46.8201173Z ├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+2026-11-07T01:21:46.8201758Z │ usr/local/lib/python3.11/site-packages/setuptools/_vendor/wheel-0.45.1.dist-inf- │ python-pkg │        1        │    -    │
+2026-11-07T01:21:46.8202320Z │ o/METADATA                                                                       │            │                 │         │
+2026-11-07T01:21:46.8202813Z ├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+2026-11-07T01:21:46.8203564Z │ usr/local/lib/python3.11/site-packages/setuptools/_vendor/zipp-3.19.2.dist-info- │ python-pkg │        0        │    -    │
+2026-11-07T01:21:46.8204149Z │ /METADATA                                                                        │            │                 │         │
+2026-11-07T01:21:46.8204647Z ├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+2026-11-07T01:21:46.8205222Z │ usr/local/lib/python3.11/site-packages/werkzeug-3.1.9.dist-info/METADATA         │ python-pkg │        0        │    -    │
+2026-11-07T01:21:46.8205870Z ├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+2026-11-07T01:21:46.8206436Z │ usr/local/lib/python3.11/site-packages/wheel-0.46.3.dist-info/METADATA           │ python-pkg │        0        │    -    │
+2026-11-07T01:21:46.8207561Z └──────────────────────────────────────────────────────────────────────────────────┴────────────┴─────────────────┴─────────┘
+2026-11-07T01:21:46.8208330Z Legend:
+2026-11-07T01:21:46.8208600Z - '-': Not scanned
+2026-11-07T01:21:46.8209090Z - '0': Clean (no security findings detected)
+2026-11-07T01:21:46.8209371Z 
+2026-11-07T01:21:46.8209378Z 
+2026-11-07T01:21:46.8209505Z For OSS Maintainers: VEX Notice
+2026-11-07T01:21:46.8209847Z --------------------------------
+2026-11-07T01:21:46.8210892Z If you're an OSS maintainer and Trivy has detected vulnerabilities in your project that you believe are not actually exploitable, consider issuing a VEX (Vulnerability Exploitability eXchange) statement.
+2026-11-07T01:21:46.8212486Z VEX allows you to communicate the actual status of vulnerabilities in your project, improving security transparency and reducing false positives for your users.
+2026-11-07T01:21:46.8213875Z Learn more and start using VEX: https://trivy.dev/docs/v0.70/guide/supply-chain/vex/repo#publishing-vex-documents
+2026-11-07T01:21:46.8214406Z 
+2026-11-07T01:21:46.8214584Z To disable this notice, set the TRIVY_DISABLE_VEX_NOTICE environment variable.
+2026-11-07T01:21:46.8214836Z 
+2026-11-07T01:21:46.8214840Z 
+2026-11-07T01:21:46.8214954Z local/voting-app-vote:pr (debian 13.7)
+2026-11-07T01:21:46.8215209Z ======================================
+2026-11-07T01:21:46.8215439Z Total: 53 (HIGH: 53, CRITICAL: 0)
+2026-11-07T01:21:46.8215580Z 
+2026-11-07T01:21:46.8216023Z ┌───────────────┬─────────────────┬──────────┬──────────────┬───────────────────────────────────┬───────────────┬──────────────────────────────────────────────────────────────┐
+2026-11-07T01:21:46.8216778Z │    Library    │  Vulnerability  │ Severity │    Status    │         Installed Version         │ Fixed Version │                            Title                             │
+2026-11-07T01:21:46.8217558Z ├───────────────┼─────────────────┼──────────┼──────────────┼───────────────────────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8218300Z │ bsdutils      │ CVE-2026-76642  │ HIGH     │ affected     │ 1:2.41.5-0+deb13u1                │               │ util-linux: util-linux: failed external mount helper still   │
+2026-11-07T01:21:46.8219031Z │               │                 │          │              │                                   │               │ runs privileged X-mount post-hooks                           │
+2026-11-07T01:21:46.8219710Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-76642                   │
+2026-11-07T01:21:46.8220620Z │               ├─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8221568Z │               │ CVE-2026-78408  │          │              │                                   │               │ util-linux: util-linux: nsenter --join-cgroup leaks root     │
+2026-11-07T01:21:46.8222588Z │               │                 │          │              │                                   │               │ cgroup migration authority                                   │
+2026-11-07T01:21:46.8224785Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-78408                   │
+2026-11-07T01:21:46.8225594Z │               ├─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8226213Z │               │ CVE-2026-78409  │          │              │                                   │               │ util-linux: util-linux: X-mount.subdir detached-tree         │
+2026-11-07T01:21:46.8226852Z │               │                 │          │              │                                   │               │ resolution can escape via intermediate symlinks              │
+2026-11-07T01:21:46.8227612Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-78409                   │
+2026-11-07T01:21:46.8228702Z │               ├─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8229418Z │               │ CVE-2026-78410  │          │              │                                   │               │ util-linux: util-linux: restricted bind mounts do not pin    │
+2026-11-07T01:21:46.8230060Z │               │                 │          │              │                                   │               │ the source, allowing X-mount.owner/group/mode...             │
+2026-11-07T01:21:46.8230656Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-78410                   │
+2026-11-07T01:21:46.8231329Z ├───────────────┼─────────────────┤          │              ├───────────────────────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8232021Z │ curl          │ CVE-2026-12064  │          │              │ 8.14.1-2+deb13u7                  │               │ curl: curl: SSH host verification bypass when using          │
+2026-11-07T01:21:46.8232669Z │               │                 │          │              │                                   │               │ schemeless URLs with SFTP/SCP...                             │
+2026-11-07T01:21:46.8233457Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-12064                   │
+2026-11-07T01:21:46.8234225Z │               ├─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8234869Z │               │ CVE-2026-8458   │          │              │                                   │               │ curl: libcurl: Unauthorized connection reuse due to a        │
+2026-11-07T01:21:46.8235762Z │               │                 │          │              │                                   │               │ logical error                                                │
+2026-11-07T01:21:46.8236355Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-8458                    │
+2026-11-07T01:21:46.8237031Z ├───────────────┼─────────────────┤          │              ├───────────────────────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8237921Z │ libacl1       │ CVE-2026-54369  │          │              │ 2.3.2-2+b1                        │               │ acl: Symlink traversal privilege escalation via libacl       │
+2026-11-07T01:21:46.8238586Z │               │                 │          │              │                                   │               │ functions                                                    │
+2026-11-07T01:21:46.8239207Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-54369                   │
+2026-11-07T01:21:46.8239858Z ├───────────────┼─────────────────┤          │              ├───────────────────────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8240546Z │ libblkid1     │ CVE-2026-76642  │          │              │ 2.41.5-0+deb13u1                  │               │ util-linux: util-linux: failed external mount helper still   │
+2026-11-07T01:21:46.8241209Z │               │                 │          │              │                                   │               │ runs privileged X-mount post-hooks                           │
+2026-11-07T01:21:46.8241804Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-76642                   │
+2026-11-07T01:21:46.8242539Z │               ├─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8243150Z │               │ CVE-2026-78408  │          │              │                                   │               │ util-linux: util-linux: nsenter --join-cgroup leaks root     │
+2026-11-07T01:21:46.8244102Z │               │                 │          │              │                                   │               │ cgroup migration authority                                   │
+2026-11-07T01:21:46.8244706Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-78408                   │
+2026-11-07T01:21:46.8245336Z │               ├─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8246096Z │               │ CVE-2026-78409  │          │              │                                   │               │ util-linux: util-linux: X-mount.subdir detached-tree         │
+2026-11-07T01:21:46.8246738Z │               │                 │          │              │                                   │               │ resolution can escape via intermediate symlinks              │
+2026-11-07T01:21:46.8247330Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-78409                   │
+2026-11-07T01:21:46.8247949Z │               ├─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8248562Z │               │ CVE-2026-78410  │          │              │                                   │               │ util-linux: util-linux: restricted bind mounts do not pin    │
+2026-11-07T01:21:46.8249233Z │               │                 │          │              │                                   │               │ the source, allowing X-mount.owner/group/mode...             │
+2026-11-07T01:21:46.8249829Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-78410                   │
+2026-11-07T01:21:46.8250494Z ├───────────────┼─────────────────┤          │              ├───────────────────────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8251363Z │ libcurl4t64   │ CVE-2026-12064  │          │              │ 8.14.1-2+deb13u7                  │               │ curl: curl: SSH host verification bypass when using          │
+2026-11-07T01:21:46.8252082Z │               │                 │          │              │                                   │               │ schemeless URLs with SFTP/SCP...                             │
+2026-11-07T01:21:46.8252798Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-12064                   │
+2026-11-07T01:21:46.8253576Z │               ├─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8254198Z │               │ CVE-2026-8458   │          │              │                                   │               │ curl: libcurl: Unauthorized connection reuse due to a        │
+2026-11-07T01:21:46.8255126Z │               │                 │          │              │                                   │               │ logical error                                                │
+2026-11-07T01:21:46.8255720Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-8458                    │
+2026-11-07T01:21:46.8256534Z ├───────────────┼─────────────────┤          │              ├───────────────────────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8257242Z │ liblastlog2-2 │ CVE-2026-76642  │          │              │ 2.41.5-0+deb13u1                  │               │ util-linux: util-linux: failed external mount helper still   │
+2026-11-07T01:21:46.8257931Z │               │                 │          │              │                                   │               │ runs privileged X-mount post-hooks                           │
+2026-11-07T01:21:46.8258537Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-76642                   │
+2026-11-07T01:21:46.8259154Z │               ├─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8259808Z │               │ CVE-2026-78408  │          │              │                                   │               │ util-linux: util-linux: nsenter --join-cgroup leaks root     │
+2026-11-07T01:21:46.8260427Z │               │                 │          │              │                                   │               │ cgroup migration authority                                   │
+2026-11-07T01:21:46.8261277Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-78408                   │
+2026-11-07T01:21:46.8262334Z │               ├─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8263149Z │               │ CVE-2026-78409  │          │              │                                   │               │ util-linux: util-linux: X-mount.subdir detached-tree         │
+2026-11-07T01:21:46.8264140Z │               │                 │          │              │                                   │               │ resolution can escape via intermediate symlinks              │
+2026-11-07T01:21:46.8264762Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-78409                   │
+2026-11-07T01:21:46.8265433Z │               ├─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8266389Z │               │ CVE-2026-78410  │          │              │                                   │               │ util-linux: util-linux: restricted bind mounts do not pin    │
+2026-11-07T01:21:46.8267012Z │               │                 │          │              │                                   │               │ the source, allowing X-mount.owner/group/mode...             │
+2026-11-07T01:21:46.8267757Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-78410                   │
+2026-11-07T01:21:46.8268395Z ├───────────────┼─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8269051Z │ libmount1     │ CVE-2026-76642  │          │              │                                   │               │ util-linux: util-linux: failed external mount helper still   │
+2026-11-07T01:21:46.8269703Z │               │                 │          │              │                                   │               │ runs privileged X-mount post-hooks                           │
+2026-11-07T01:21:46.8270310Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-76642                   │
+2026-11-07T01:21:46.8270949Z │               ├─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8271558Z │               │ CVE-2026-78408  │          │              │                                   │               │ util-linux: util-linux: nsenter --join-cgroup leaks root     │
+2026-11-07T01:21:46.8272171Z │               │                 │          │              │                                   │               │ cgroup migration authority                                   │
+2026-11-07T01:21:46.8272772Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-78408                   │
+2026-11-07T01:21:46.8273586Z │               ├─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8274331Z │               │ CVE-2026-78409  │          │              │                                   │               │ util-linux: util-linux: X-mount.subdir detached-tree         │
+2026-11-07T01:21:46.8274958Z │               │                 │          │              │                                   │               │ resolution can escape via intermediate symlinks              │
+2026-11-07T01:21:46.8275558Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-78409                   │
+2026-11-07T01:21:46.8276176Z │               ├─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8276904Z │               │ CVE-2026-78410  │          │              │                                   │               │ util-linux: util-linux: restricted bind mounts do not pin    │
+2026-11-07T01:21:46.8277545Z │               │                 │          │              │                                   │               │ the source, allowing X-mount.owner/group/mode...             │
+2026-11-07T01:21:46.8278130Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-78410                   │
+2026-11-07T01:21:46.8278785Z ├───────────────┼─────────────────┤          │              ├───────────────────────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8279479Z │ libncursesw6  │ CVE-2025-69720  │          │              │ 6.5+20250216-2                    │               │ ncurses: ncurses: Buffer overflow vulnerability may lead to  │
+2026-11-07T01:21:46.8280172Z │               │                 │          │              │                                   │               │ arbitrary code execution.                                    │
+2026-11-07T01:21:46.8280766Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2025-69720                   │
+2026-11-07T01:21:46.8281425Z ├───────────────┼─────────────────┤          │              ├───────────────────────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8282110Z │ libsmartcols1 │ CVE-2026-76642  │          │              │ 2.41.5-0+deb13u1                  │               │ util-linux: util-linux: failed external mount helper still   │
+2026-11-07T01:21:46.8282779Z │               │                 │          │              │                                   │               │ runs privileged X-mount post-hooks                           │
+2026-11-07T01:21:46.8283574Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-76642                   │
+2026-11-07T01:21:46.8284337Z │               ├─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8284951Z │               │ CVE-2026-78408  │          │              │                                   │               │ util-linux: util-linux: nsenter --join-cgroup leaks root     │
+2026-11-07T01:21:46.8285591Z │               │                 │          │              │                                   │               │ cgroup migration authority                                   │
+2026-11-07T01:21:46.8286199Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-78408                   │
+2026-11-07T01:21:46.8286956Z │               ├─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8287601Z │               │ CVE-2026-78409  │          │              │                                   │               │ util-linux: util-linux: X-mount.subdir detached-tree         │
+2026-11-07T01:21:46.8288236Z │               │                 │          │              │                                   │               │ resolution can escape via intermediate symlinks              │
+2026-11-07T01:21:46.8288839Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-78409                   │
+2026-11-07T01:21:46.8289461Z │               ├─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8290086Z │               │ CVE-2026-78410  │          │              │                                   │               │ util-linux: util-linux: restricted bind mounts do not pin    │
+2026-11-07T01:21:46.8290722Z │               │                 │          │              │                                   │               │ the source, allowing X-mount.owner/group/mode...             │
+2026-11-07T01:21:46.8291321Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-78410                   │
+2026-11-07T01:21:46.8291967Z ├───────────────┼─────────────────┤          │              ├───────────────────────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8292673Z │ libsqlite3-0  │ CVE-2026-119373 │          │              │ 3.46.1-7+deb13u2                  │               │ sqlite: sqlite: Denial of service via heap-based buffer      │
+2026-11-07T01:21:46.8293496Z │               │                 │          │              │                                   │               │ overflow in FTS5                                             │
+2026-11-07T01:21:46.8294213Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-119373                  │
+2026-11-07T01:21:46.8294834Z │               ├─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8295466Z │               │ CVE-2026-119374 │          │              │                                   │               │ sqlite: sqlite: Arbitrary code execution via corrupted FTS5  │
+2026-11-07T01:21:46.8296059Z │               │                 │          │              │                                   │               │ index                                                        │
+2026-11-07T01:21:46.8296756Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-119374                  │
+2026-11-07T01:21:46.8297382Z │               ├─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8297996Z │               │ CVE-2026-119379 │          │              │                                   │               │ sqlite: sqlite: Arbitrary code execution via crafted session │
+2026-11-07T01:21:46.8298612Z │               │                 │          │              │                                   │               │ changesets                                                   │
+2026-11-07T01:21:46.8299206Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-119379                  │
+2026-11-07T01:21:46.8299871Z ├───────────────┼─────────────────┤          │              ├───────────────────────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8300582Z │ libsystemd0   │ CVE-2026-16742  │          │              │ 257.13-1~deb13u1                  │               │ systemd: systemd-homed: Local privilege escalation via       │
+2026-11-07T01:21:46.8301269Z │               │                 │          │              │                                   │               │ missing home-record signature verification                   │
+2026-11-07T01:21:46.8301874Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-16742                   │
+2026-11-07T01:21:46.8302524Z ├───────────────┼─────────────────┤          │              ├───────────────────────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8303218Z │ libtinfo6     │ CVE-2025-69720  │          │              │ 6.5+20250216-2                    │               │ ncurses: ncurses: Buffer overflow vulnerability may lead to  │
+2026-11-07T01:21:46.8304175Z │               │                 │          │              │                                   │               │ arbitrary code execution.                                    │
+2026-11-07T01:21:46.8304772Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2025-69720                   │
+2026-11-07T01:21:46.8305426Z ├───────────────┼─────────────────┤          │              ├───────────────────────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8306103Z │ libudev1      │ CVE-2026-16742  │          │              │ 257.13-1~deb13u1                  │               │ systemd: systemd-homed: Local privilege escalation via       │
+2026-11-07T01:21:46.8306892Z │               │                 │          │              │                                   │               │ missing home-record signature verification                   │
+2026-11-07T01:21:46.8307502Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-16742                   │
+2026-11-07T01:21:46.8308177Z ├───────────────┼─────────────────┤          │              ├───────────────────────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8308847Z │ libuuid1      │ CVE-2026-76642  │          │              │ 2.41.5-0+deb13u1                  │               │ util-linux: util-linux: failed external mount helper still   │
+2026-11-07T01:21:46.8309510Z │               │                 │          │              │                                   │               │ runs privileged X-mount post-hooks                           │
+2026-11-07T01:21:46.8310120Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-76642                   │
+2026-11-07T01:21:46.8310740Z │               ├─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8311347Z │               │ CVE-2026-78408  │          │              │                                   │               │ util-linux: util-linux: nsenter --join-cgroup leaks root     │
+2026-11-07T01:21:46.8311975Z │               │                 │          │              │                                   │               │ cgroup migration authority                                   │
+2026-11-07T01:21:46.8312563Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-78408                   │
+2026-11-07T01:21:46.8313423Z │               ├─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8314048Z │               │ CVE-2026-78409  │          │              │                                   │               │ util-linux: util-linux: X-mount.subdir detached-tree         │
+2026-11-07T01:21:46.8314682Z │               │                 │          │              │                                   │               │ resolution can escape via intermediate symlinks              │
+2026-11-07T01:21:46.8315279Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-78409                   │
+2026-11-07T01:21:46.8315897Z │               ├─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8316661Z │               │ CVE-2026-78410  │          │              │                                   │               │ util-linux: util-linux: restricted bind mounts do not pin    │
+2026-11-07T01:21:46.8317299Z │               │                 │          │              │                                   │               │ the source, allowing X-mount.owner/group/mode...             │
+2026-11-07T01:21:46.8317902Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-78410                   │
+2026-11-07T01:21:46.8318561Z ├───────────────┼─────────────────┤          │              ├───────────────────────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8319257Z │ login         │ CVE-2026-76642  │          │              │ 1:4.16.0-2+really2.41.5-0+deb13u1 │               │ util-linux: util-linux: failed external mount helper still   │
+2026-11-07T01:21:46.8319953Z │               │                 │          │              │                                   │               │ runs privileged X-mount post-hooks                           │
+2026-11-07T01:21:46.8320542Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-76642                   │
+2026-11-07T01:21:46.8321146Z │               ├─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8321757Z │               │ CVE-2026-78408  │          │              │                                   │               │ util-linux: util-linux: nsenter --join-cgroup leaks root     │
+2026-11-07T01:21:46.8322369Z │               │                 │          │              │                                   │               │ cgroup migration authority                                   │
+2026-11-07T01:21:46.8323093Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-78408                   │
+2026-11-07T01:21:46.8323898Z │               ├─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8324521Z │               │ CVE-2026-78409  │          │              │                                   │               │ util-linux: util-linux: X-mount.subdir detached-tree         │
+2026-11-07T01:21:46.8325149Z │               │                 │          │              │                                   │               │ resolution can escape via intermediate symlinks              │
+2026-11-07T01:21:46.8325757Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-78409                   │
+2026-11-07T01:21:46.8326503Z │               ├─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8327123Z │               │ CVE-2026-78410  │          │              │                                   │               │ util-linux: util-linux: restricted bind mounts do not pin    │
+2026-11-07T01:21:46.8327744Z │               │                 │          │              │                                   │               │ the source, allowing X-mount.owner/group/mode...             │
+2026-11-07T01:21:46.8328348Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-78410                   │
+2026-11-07T01:21:46.8329003Z ├───────────────┼─────────────────┤          │              ├───────────────────────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8329699Z │ mount         │ CVE-2026-76642  │          │              │ 2.41.5-0+deb13u1                  │               │ util-linux: util-linux: failed external mount helper still   │
+2026-11-07T01:21:46.8330343Z │               │                 │          │              │                                   │               │ runs privileged X-mount post-hooks                           │
+2026-11-07T01:21:46.8330933Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-76642                   │
+2026-11-07T01:21:46.8331545Z │               ├─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8332160Z │               │ CVE-2026-78408  │          │              │                                   │               │ util-linux: util-linux: nsenter --join-cgroup leaks root     │
+2026-11-07T01:21:46.8332917Z │               │                 │          │              │                                   │               │ cgroup migration authority                                   │
+2026-11-07T01:21:46.8334576Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-78408                   │
+2026-11-07T01:21:46.8335215Z │               ├─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8335843Z │               │ CVE-2026-78409  │          │              │                                   │               │ util-linux: util-linux: X-mount.subdir detached-tree         │
+2026-11-07T01:21:46.8336495Z │               │                 │          │              │                                   │               │ resolution can escape via intermediate symlinks              │
+2026-11-07T01:21:46.8337234Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-78409                   │
+2026-11-07T01:21:46.8337877Z │               ├─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8338496Z │               │ CVE-2026-78410  │          │              │                                   │               │ util-linux: util-linux: restricted bind mounts do not pin    │
+2026-11-07T01:21:46.8339124Z │               │                 │          │              │                                   │               │ the source, allowing X-mount.owner/group/mode...             │
+2026-11-07T01:21:46.8339717Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-78410                   │
+2026-11-07T01:21:46.8340409Z ├───────────────┼─────────────────┤          │              ├───────────────────────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8341098Z │ ncurses-base  │ CVE-2025-69720  │          │              │ 6.5+20250216-2                    │               │ ncurses: ncurses: Buffer overflow vulnerability may lead to  │
+2026-11-07T01:21:46.8341766Z │               │                 │          │              │                                   │               │ arbitrary code execution.                                    │
+2026-11-07T01:21:46.8342354Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2025-69720                   │
+2026-11-07T01:21:46.8342941Z ├───────────────┤                 │          │              │                                   ├───────────────┤                                                              │
+2026-11-07T01:21:46.8343833Z │ ncurses-bin   │                 │          │              │                                   │               │                                                              │
+2026-11-07T01:21:46.8344394Z │               │                 │          │              │                                   │               │                                                              │
+2026-11-07T01:21:46.8344914Z │               │                 │          │              │                                   │               │                                                              │
+2026-11-07T01:21:46.8345548Z ├───────────────┼─────────────────┤          ├──────────────┼───────────────────────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8346274Z │ perl-base     │ CVE-2026-9538   │          │ fix_deferred │ 5.40.1-6+deb13u1                  │               │ perl-Archive-Tar: perl-Archive-Tar: Denial of Service via    │
+2026-11-07T01:21:46.8347123Z │               │                 │          │              │                                   │               │ crafted tar header with large entry...                       │
+2026-11-07T01:21:46.8347718Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-9538                    │
+2026-11-07T01:21:46.8348389Z ├───────────────┼─────────────────┤          ├──────────────┼───────────────────────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8349096Z │ util-linux    │ CVE-2026-76642  │          │ affected     │ 2.41.5-0+deb13u1                  │               │ util-linux: util-linux: failed external mount helper still   │
+2026-11-07T01:21:46.8349784Z │               │                 │          │              │                                   │               │ runs privileged X-mount post-hooks                           │
+2026-11-07T01:21:46.8350410Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-76642                   │
+2026-11-07T01:21:46.8351026Z │               ├─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8351652Z │               │ CVE-2026-78408  │          │              │                                   │               │ util-linux: util-linux: nsenter --join-cgroup leaks root     │
+2026-11-07T01:21:46.8352271Z │               │                 │          │              │                                   │               │ cgroup migration authority                                   │
+2026-11-07T01:21:46.8352863Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-78408                   │
+2026-11-07T01:21:46.8353740Z │               ├─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8354364Z │               │ CVE-2026-78409  │          │              │                                   │               │ util-linux: util-linux: X-mount.subdir detached-tree         │
+2026-11-07T01:21:46.8354985Z │               │                 │          │              │                                   │               │ resolution can escape via intermediate symlinks              │
+2026-11-07T01:21:46.8355582Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-78409                   │
+2026-11-07T01:21:46.8356188Z │               ├─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8356951Z │               │ CVE-2026-78410  │          │              │                                   │               │ util-linux: util-linux: restricted bind mounts do not pin    │
+2026-11-07T01:21:46.8357572Z │               │                 │          │              │                                   │               │ the source, allowing X-mount.owner/group/mode...             │
+2026-11-07T01:21:46.8358175Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-78410                   │
+2026-11-07T01:21:46.8358825Z ├───────────────┼─────────────────┤          │              ├───────────────────────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8359542Z │ zlib1g        │ CVE-2026-76844  │          │              │ 1:1.3.dfsg+really1.3.1-1+b1       │               │ webpack-dev-middleware: webpack-dev-middleware: Information  │
+2026-11-07T01:21:46.8360273Z │               │                 │          │              │                                   │               │ Disclosure via Path Traversal                                │
+2026-11-07T01:21:46.8360891Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-76844                   │
+2026-11-07T01:21:46.8361520Z │               ├─────────────────┤          │              │                                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8362143Z │               │ CVE-2026-85091  │          │              │                                   │               │ zlib: zlib: Heap buffer overflow in gz_vacate() allows       │
+2026-11-07T01:21:46.8362758Z │               │                 │          │              │                                   │               │ arbitrary code execution                                     │
+2026-11-07T01:21:46.8363642Z │               │                 │          │              │                                   │               │ https://avd.aquasec.com/nvd/cve-2026-85091                   │
+2026-11-07T01:21:46.8364335Z └───────────────┴─────────────────┴──────────┴──────────────┴───────────────────────────────────┴───────────────┴──────────────────────────────────────────────────────────────┘
+2026-11-07T01:21:46.8364657Z 
+2026-11-07T01:21:46.8364748Z Python (python-pkg)
+2026-11-07T01:21:46.8364940Z ===================
+2026-11-07T01:21:46.8365129Z Total: 2 (HIGH: 2, CRITICAL: 0)
+2026-11-07T01:21:46.8365272Z 
+2026-11-07T01:21:46.8365649Z ┌───────────────────────────┬────────────────┬──────────┬────────┬───────────────────┬───────────────┬──────────────────────────────────────────────────────────────┐
+2026-11-07T01:21:46.8366350Z │          Library          │ Vulnerability  │ Severity │ Status │ Installed Version │ Fixed Version │                            Title                             │
+2026-11-07T01:21:46.8367243Z ├───────────────────────────┼────────────────┼──────────┼────────┼───────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8367952Z │ jaraco.context (METADATA) │ CVE-2026-23949 │ HIGH     │ fixed  │ 5.3.0             │ 6.1.0         │ jaraco.context: jaraco.context: Path traversal via malicious │
+2026-11-07T01:21:46.8368612Z │                           │                │          │        │                   │               │ tar archives                                                 │
+2026-11-07T01:21:46.8369175Z │                           │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2026-23949                   │
+2026-11-07T01:21:46.8369808Z ├───────────────────────────┼────────────────┤          │        ├───────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:46.8370492Z │ wheel (METADATA)          │ CVE-2026-24049 │          │        │ 0.45.1            │ 0.46.2        │ wheel: wheel: Privilege Escalation or Arbitrary Code         │
+2026-11-07T01:21:46.8371126Z │                           │                │          │        │                   │               │ Execution via malicious wheel file...                        │
+2026-11-07T01:21:46.8371699Z │                           │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2026-24049                   │
+2026-11-07T01:21:46.8372335Z └───────────────────────────┴────────────────┴──────────┴────────┴───────────────────┴───────────────┴──────────────────────────────────────────────────────────────┘
+2026-11-07T01:21:46.8378181Z ##[end-action id=__aquasecurity_trivy-action_2.__run_4;outcome=success;conclusion=success;duration_ms=1796]
+2026-11-07T01:21:46.8381214Z ##[start-action display=Remove Trivy Envs file;id=__aquasecurity_trivy-action_2.__run_5]
+2026-11-07T01:21:46.8404158Z ##[group]Run rm -f trivy_envs.txt
+2026-11-07T01:21:46.8404555Z [36;1mrm -f trivy_envs.txt[0m
+2026-11-07T01:21:46.8448974Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-07T01:21:46.8449294Z ##[endgroup]
+2026-11-07T01:21:46.8524350Z ##[end-action id=__aquasecurity_trivy-action_2.__run_5;outcome=success;conclusion=success;duration_ms=14]

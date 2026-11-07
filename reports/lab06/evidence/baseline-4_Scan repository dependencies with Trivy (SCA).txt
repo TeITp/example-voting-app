@@ -1,0 +1,392 @@
+﻿2026-11-07T01:21:30.4202723Z ##[group]Run aquasecurity/trivy-action@v0.36.0
+2026-11-07T01:21:30.4202999Z with:
+2026-11-07T01:21:30.4203161Z   scan-type: fs
+2026-11-07T01:21:30.4203563Z   scan-ref: .
+2026-11-07T01:21:30.4203735Z   format: table
+2026-11-07T01:21:30.4203903Z   severity: HIGH,CRITICAL
+2026-11-07T01:21:30.4204084Z   exit-code: 0
+2026-11-07T01:21:30.4204245Z   ignore-unfixed: false
+2026-11-07T01:21:30.4204434Z   vuln-type: os,library
+2026-11-07T01:21:30.4204755Z   cache-dir: /home/runner/work/example-voting-app/example-voting-app/.cache/trivy
+2026-11-07T01:21:30.4205098Z   list-all-pkgs: false
+2026-11-07T01:21:30.4205283Z   version: v0.70.0
+2026-11-07T01:21:30.4205450Z   cache: true
+2026-11-07T01:21:30.4205620Z   skip-setup-trivy: false
+2026-11-07T01:21:30.4207517Z   token-setup-trivy: ***
+2026-11-07T01:21:30.4207721Z ##[endgroup]
+2026-11-07T01:21:30.4264127Z ##[start-action display=Install Trivy;id=__aquasecurity_trivy-action.__aquasecurity_setup-trivy]
+2026-11-07T01:21:30.4352906Z ##[group]Run aquasecurity/setup-trivy@3fb12ec12f41e471780db15c232d5dd185dcb514
+2026-11-07T01:21:30.4353417Z with:
+2026-11-07T01:21:30.4353590Z   version: v0.70.0
+2026-11-07T01:21:30.4353760Z   cache: true
+2026-11-07T01:21:30.4355611Z   token: ***
+2026-11-07T01:21:30.4355785Z   path: $HOME/.local/bin
+2026-11-07T01:21:30.4356003Z   github-server-url: https://github.com
+2026-11-07T01:21:30.4356233Z ##[endgroup]
+2026-11-07T01:21:30.4361362Z ##[start-action display=Binary dir;id=__aquasecurity_trivy-action.__aquasecurity_setup-trivy.binary-dir]
+2026-11-07T01:21:30.4380300Z ##[group]Run echo "dir=$HOME/.local/bin/trivy-bin" >> $GITHUB_OUTPUT
+2026-11-07T01:21:30.4380691Z [36;1mecho "dir=$HOME/.local/bin/trivy-bin" >> $GITHUB_OUTPUT[0m
+2026-11-07T01:21:30.4427939Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-07T01:21:30.4428235Z ##[endgroup]
+2026-11-07T01:21:30.4514033Z ##[end-action id=__aquasecurity_trivy-action.__aquasecurity_setup-trivy.binary-dir;outcome=success;conclusion=success;duration_ms=15]
+2026-11-07T01:21:30.4517990Z ##[start-action display=Check the version for caching;id=__aquasecurity_trivy-action.__aquasecurity_setup-trivy.__run]
+2026-11-07T01:21:30.4523568Z ##[end-action id=__aquasecurity_trivy-action.__aquasecurity_setup-trivy.__run;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-11-07T01:21:30.4525491Z ##[start-action display=Restore Trivy binary from cache;id=__aquasecurity_trivy-action.__aquasecurity_setup-trivy.cache]
+2026-11-07T01:21:30.4564386Z ##[group]Run actions/cache/restore@9255dc7a253b0ccc959486e2bca901246202afeb
+2026-11-07T01:21:30.4564707Z with:
+2026-11-07T01:21:30.4564895Z   path: /home/runner/.local/bin/trivy-bin
+2026-11-07T01:21:30.4565137Z   key: trivy-binary-v0.70.0-Linux-X64
+2026-11-07T01:21:30.4565368Z   enableCrossOsArchive: false
+2026-11-07T01:21:30.4565584Z   fail-on-cache-miss: false
+2026-11-07T01:21:30.4565778Z   lookup-only: false
+2026-11-07T01:21:30.4565958Z ##[endgroup]
+2026-11-07T01:21:30.8544446Z Cache not found for input keys: trivy-binary-v0.70.0-Linux-X64
+2026-11-07T01:21:30.8628616Z ##[end-action id=__aquasecurity_trivy-action.__aquasecurity_setup-trivy.cache;outcome=success;conclusion=success;duration_ms=410]
+2026-11-07T01:21:30.8632158Z ##[start-action display=Checkout install script;id=__aquasecurity_trivy-action.__aquasecurity_setup-trivy.__actions_checkout]
+2026-11-07T01:21:30.8748313Z ##[group]Run actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
+2026-11-07T01:21:30.8748630Z with:
+2026-11-07T01:21:30.8748813Z   repository: aquasecurity/trivy
+2026-11-07T01:21:30.8749026Z   sparse-checkout: contrib
+
+2026-11-07T01:21:30.8749222Z   path: trivy
+2026-11-07T01:21:30.8749389Z   fetch-depth: 1
+2026-11-07T01:21:30.8749585Z   ref: 75c4dc0f45c5d7ffd05ae26df1e0c666787bdf2a
+2026-11-07T01:21:30.8749846Z   github-server-url: https://github.com
+2026-11-07T01:21:30.8751809Z   token: ***
+2026-11-07T01:21:30.8751983Z   ssh-strict: true
+2026-11-07T01:21:30.8752164Z   ssh-user: git
+2026-11-07T01:21:30.8752343Z   persist-credentials: true
+2026-11-07T01:21:30.8752553Z   clean: true
+2026-11-07T01:21:30.8752909Z   sparse-checkout-cone-mode: true
+2026-11-07T01:21:30.8753117Z   fetch-tags: false
+2026-11-07T01:21:30.8753457Z   show-progress: true
+2026-11-07T01:21:30.8753630Z   lfs: false
+2026-11-07T01:21:30.8753788Z   submodules: false
+2026-11-07T01:21:30.8753963Z   set-safe-directory: true
+2026-11-07T01:21:30.8754158Z ##[endgroup]
+2026-11-07T01:21:30.9476236Z Syncing repository: aquasecurity/trivy
+2026-11-07T01:21:30.9478390Z ##[group]Getting Git version info
+2026-11-07T01:21:30.9478996Z Working directory is '/home/runner/work/example-voting-app/example-voting-app/trivy'
+2026-11-07T01:21:30.9507263Z [command]/usr/bin/git version
+2026-11-07T01:21:30.9545493Z git version 2.56.0
+2026-11-07T01:21:30.9562536Z ##[endgroup]
+2026-11-07T01:21:30.9574655Z Temporarily overriding HOME='/home/runner/work/_temp/a969da35-4353-476b-98bd-5f4dcdd830d3' before making global git config changes
+2026-11-07T01:21:30.9575640Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-07T01:21:30.9579159Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/example-voting-app/example-voting-app/trivy
+2026-11-07T01:21:30.9610980Z ##[group]Initializing the repository
+2026-11-07T01:21:30.9614744Z [command]/usr/bin/git init /home/runner/work/example-voting-app/example-voting-app/trivy
+2026-11-07T01:21:30.9652788Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-07T01:21:30.9653738Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-07T01:21:30.9654648Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-07T01:21:30.9655402Z hint: call:
+2026-11-07T01:21:30.9655825Z hint:
+2026-11-07T01:21:30.9656281Z hint: 	git config --global init.defaultBranch <name>
+2026-11-07T01:21:30.9656836Z hint:
+2026-11-07T01:21:30.9657361Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-07T01:21:30.9658162Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-07T01:21:30.9659052Z hint:
+2026-11-07T01:21:30.9659458Z hint: 	git branch -m <name>
+2026-11-07T01:21:30.9659889Z hint:
+2026-11-07T01:21:30.9660438Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-07T01:21:30.9661417Z Initialized empty Git repository in /home/runner/work/example-voting-app/example-voting-app/trivy/.git/
+2026-11-07T01:21:30.9663986Z [command]/usr/bin/git remote add origin https://github.com/aquasecurity/trivy
+2026-11-07T01:21:30.9695477Z ##[endgroup]
+2026-11-07T01:21:30.9695854Z ##[group]Disabling automatic garbage collection
+2026-11-07T01:21:30.9700075Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-07T01:21:30.9730712Z ##[endgroup]
+2026-11-07T01:21:30.9731037Z ##[group]Setting up auth
+2026-11-07T01:21:30.9731973Z Removing SSH command configuration
+2026-11-07T01:21:30.9737622Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-07T01:21:30.9767296Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-07T01:21:31.0031392Z Removing HTTP extra header
+2026-11-07T01:21:31.0039038Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-07T01:21:31.0068683Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-07T01:21:31.0321688Z Removing includeIf entries pointing to credentials config files
+2026-11-07T01:21:31.0328495Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-07T01:21:31.0359905Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-07T01:21:31.0601337Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-eee690bc-44a2-4f39-ac96-1262e9a6491b.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-07T01:21:31.0638032Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/example-voting-app/example-voting-app/trivy/.git.path /home/runner/work/_temp/git-credentials-eee690bc-44a2-4f39-ac96-1262e9a6491b.config
+2026-11-07T01:21:31.0667206Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/example-voting-app/example-voting-app/trivy/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-eee690bc-44a2-4f39-ac96-1262e9a6491b.config
+2026-11-07T01:21:31.0695903Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/trivy/.git.path /github/runner_temp/git-credentials-eee690bc-44a2-4f39-ac96-1262e9a6491b.config
+2026-11-07T01:21:31.0724758Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/trivy/.git/worktrees/*.path /github/runner_temp/git-credentials-eee690bc-44a2-4f39-ac96-1262e9a6491b.config
+2026-11-07T01:21:31.0748774Z ##[endgroup]
+2026-11-07T01:21:31.0749228Z ##[group]Fetching the repository
+2026-11-07T01:21:31.0755466Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --filter=blob:none --depth=1 origin 75c4dc0f45c5d7ffd05ae26df1e0c666787bdf2a
+2026-11-07T01:21:31.3845953Z From https://github.com/aquasecurity/trivy
+2026-11-07T01:21:31.3846632Z  * branch            75c4dc0f45c5d7ffd05ae26df1e0c666787bdf2a -> FETCH_HEAD
+2026-11-07T01:21:31.3852203Z ##[endgroup]
+2026-11-07T01:21:31.3852654Z ##[group]Determining the checkout info
+2026-11-07T01:21:31.3855600Z ##[endgroup]
+2026-11-07T01:21:31.3856023Z ##[group]Setting up sparse checkout
+2026-11-07T01:21:31.3861395Z [command]/usr/bin/git sparse-checkout set contrib
+2026-11-07T01:21:31.3899911Z ##[endgroup]
+2026-11-07T01:21:31.3900364Z ##[group]Checking out the ref
+2026-11-07T01:21:31.3903843Z [command]/usr/bin/git checkout --progress --force 75c4dc0f45c5d7ffd05ae26df1e0c666787bdf2a
+2026-11-07T01:21:31.7176118Z Note: switching to '75c4dc0f45c5d7ffd05ae26df1e0c666787bdf2a'.
+2026-11-07T01:21:31.7177178Z 
+2026-11-07T01:21:31.7177362Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-07T01:21:31.7177753Z changes and commit them, and you can discard any commits you make in this
+2026-11-07T01:21:31.7178125Z state without impacting any branches by switching back to a branch.
+2026-11-07T01:21:31.7178340Z 
+2026-11-07T01:21:31.7178486Z If you want to create a new branch to retain commits you create, you may
+2026-11-07T01:21:31.7178834Z do so (now or later) by using -c with the switch command. Example:
+2026-11-07T01:21:31.7179117Z 
+2026-11-07T01:21:31.7179345Z   git switch -c <new-branch-name>
+2026-11-07T01:21:31.7179576Z 
+2026-11-07T01:21:31.7179768Z Or undo this operation with:
+2026-11-07T01:21:31.7180012Z 
+2026-11-07T01:21:31.7180230Z   git switch -
+2026-11-07T01:21:31.7180529Z 
+2026-11-07T01:21:31.7180813Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-07T01:21:31.7181134Z 
+2026-11-07T01:21:31.7181304Z HEAD is now at 75c4dc0 chore: add client option to install script (#9962)
+2026-11-07T01:21:31.7184192Z ##[endgroup]
+2026-11-07T01:21:31.7222154Z [command]/usr/bin/git log -1 --format=%H
+2026-11-07T01:21:31.7244841Z 75c4dc0f45c5d7ffd05ae26df1e0c666787bdf2a
+2026-11-07T01:21:31.7343083Z ##[end-action id=__aquasecurity_trivy-action.__aquasecurity_setup-trivy.__actions_checkout;outcome=success;conclusion=success;duration_ms=870]
+2026-11-07T01:21:31.7347896Z ##[start-action display=Install Trivy;id=__aquasecurity_trivy-action.__aquasecurity_setup-trivy.__run_2]
+2026-11-07T01:21:31.7369527Z ##[group]Run echo "installing Trivy binary"
+2026-11-07T01:21:31.7369812Z [36;1mecho "installing Trivy binary"[0m
+2026-11-07T01:21:31.7370216Z [36;1mbash ./trivy/contrib/install.sh -b /home/runner/.local/bin/trivy-bin -c setup-trivy v0.70.0[0m
+2026-11-07T01:21:31.7370681Z [36;1mcp -r ./trivy/contrib /home/runner/.local/bin/trivy-bin/contrib[0m
+2026-11-07T01:21:31.7371193Z [36;1mrm -rf ./trivy[0m
+2026-11-07T01:21:31.7415869Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-07T01:21:31.7416157Z ##[endgroup]
+2026-11-07T01:21:31.7472532Z installing Trivy binary
+2026-11-07T01:21:31.7692149Z aquasecurity/trivy info checking GitHub for tag 'v0.70.0'
+2026-11-07T01:21:32.0113485Z aquasecurity/trivy info found version: 0.70.0 for v0.70.0/Linux/64bit
+2026-11-07T01:21:33.4408203Z aquasecurity/trivy info installed /home/runner/.local/bin/trivy-bin/trivy
+2026-11-07T01:21:33.4788101Z ##[end-action id=__aquasecurity_trivy-action.__aquasecurity_setup-trivy.__run_2;outcome=success;conclusion=success;duration_ms=1743]
+2026-11-07T01:21:33.4791433Z ##[start-action display=Add Trivy binary to $GITHUB_PATH;id=__aquasecurity_trivy-action.__aquasecurity_setup-trivy.__run_3]
+2026-11-07T01:21:33.4816136Z ##[group]Run echo /home/runner/.local/bin/trivy-bin >> $GITHUB_PATH
+2026-11-07T01:21:33.4816754Z [36;1mecho /home/runner/.local/bin/trivy-bin >> $GITHUB_PATH[0m
+2026-11-07T01:21:33.4878308Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-07T01:21:33.4878753Z ##[endgroup]
+2026-11-07T01:21:33.4956194Z ##[end-action id=__aquasecurity_trivy-action.__aquasecurity_setup-trivy.__run_3;outcome=success;conclusion=success;duration_ms=16]
+2026-11-07T01:21:33.4958168Z ##[start-action display=Save Trivy binary to cache;id=__aquasecurity_trivy-action.__aquasecurity_setup-trivy.__actions_cache]
+2026-11-07T01:21:33.4987029Z ##[group]Run actions/cache/save@9255dc7a253b0ccc959486e2bca901246202afeb
+2026-11-07T01:21:33.4987339Z with:
+2026-11-07T01:21:33.4987535Z   path: /home/runner/.local/bin/trivy-bin
+2026-11-07T01:21:33.4987791Z   key: trivy-binary-v0.70.0-Linux-X64
+2026-11-07T01:21:33.4988017Z   enableCrossOsArchive: false
+2026-11-07T01:21:33.4988215Z ##[endgroup]
+2026-11-07T01:21:33.6096773Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/example-voting-app/example-voting-app --files-from manifest.txt --use-compress-program zstdmt
+2026-11-07T01:21:35.1797194Z Sent 22872064 of 43744516 (52.3%), 21.8 MBs/sec
+2026-11-07T01:21:35.5949516Z Sent 43744516 of 43744516 (100.0%), 29.5 MBs/sec
+2026-11-07T01:21:35.8451051Z Cache saved with key: trivy-binary-v0.70.0-Linux-X64
+2026-11-07T01:21:35.8542961Z ##[end-action id=__aquasecurity_trivy-action.__aquasecurity_setup-trivy.__actions_cache;outcome=success;conclusion=success;duration_ms=2358]
+2026-11-07T01:21:35.8554480Z ##[end-action id=__aquasecurity_trivy-action.__aquasecurity_setup-trivy;outcome=success;conclusion=success;duration_ms=5428]
+2026-11-07T01:21:35.8556707Z ##[start-action display=Get current date;id=__aquasecurity_trivy-action.date]
+2026-11-07T01:21:35.8572912Z ##[group]Run echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+2026-11-07T01:21:35.8573479Z [36;1mecho "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT[0m
+2026-11-07T01:21:35.8618726Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-07T01:21:35.8619010Z ##[endgroup]
+2026-11-07T01:21:35.8717092Z ##[end-action id=__aquasecurity_trivy-action.date;outcome=success;conclusion=success;duration_ms=15]
+2026-11-07T01:21:35.8729743Z ##[start-action display=Restore DB from cache;id=__aquasecurity_trivy-action.__actions_cache]
+2026-11-07T01:21:35.8761986Z ##[group]Run actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae
+2026-11-07T01:21:35.8762282Z with:
+2026-11-07T01:21:35.8762559Z   path: /home/runner/work/example-voting-app/example-voting-app/.cache/trivy
+2026-11-07T01:21:35.8762895Z   key: cache-trivy-2026-11-07
+2026-11-07T01:21:35.8763122Z   restore-keys: cache-trivy-
+2026-11-07T01:21:35.8763541Z   enableCrossOsArchive: false
+2026-11-07T01:21:35.8763781Z   fail-on-cache-miss: false
+2026-11-07T01:21:35.8763981Z   lookup-only: false
+2026-11-07T01:21:35.8764162Z   save-always: false
+2026-11-07T01:21:35.8764345Z ##[endgroup]
+2026-11-07T01:21:36.2233765Z Cache not found for input keys: cache-trivy-2026-11-07, cache-trivy-
+2026-11-07T01:21:36.2304260Z ##[end-action id=__aquasecurity_trivy-action.__actions_cache;outcome=success;conclusion=success;duration_ms=357]
+2026-11-07T01:21:36.2311184Z ##[start-action display=Set GitHub Path;id=__aquasecurity_trivy-action.__run]
+2026-11-07T01:21:36.2329848Z ##[group]Run echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
+2026-11-07T01:21:36.2330220Z [36;1mecho "$GITHUB_ACTION_PATH" >> $GITHUB_PATH[0m
+2026-11-07T01:21:36.2375345Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-07T01:21:36.2375634Z env:
+2026-11-07T01:21:36.2375924Z   GITHUB_ACTION_PATH: /home/runner/work/_actions/aquasecurity/trivy-action/v0.36.0
+2026-11-07T01:21:36.2376262Z ##[endgroup]
+2026-11-07T01:21:36.2441168Z ##[end-action id=__aquasecurity_trivy-action.__run;outcome=success;conclusion=success;duration_ms=12]
+2026-11-07T01:21:36.2442905Z ##[start-action display=Clear Trivy Envs file;id=__aquasecurity_trivy-action.__run_2]
+2026-11-07T01:21:36.2457793Z ##[group]Run rm -f trivy_envs.txt
+2026-11-07T01:21:36.2458054Z [36;1mrm -f trivy_envs.txt[0m
+2026-11-07T01:21:36.2458283Z [36;1mtouch trivy_envs.txt[0m
+2026-11-07T01:21:36.2496211Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-07T01:21:36.2496521Z ##[endgroup]
+2026-11-07T01:21:36.2590466Z ##[end-action id=__aquasecurity_trivy-action.__run_2;outcome=success;conclusion=success;duration_ms=14]
+2026-11-07T01:21:36.2594427Z ##[start-action display=Set Trivy environment variables;id=__aquasecurity_trivy-action.__run_3]
+2026-11-07T01:21:36.2609583Z ##[group]Run # Note: There is currently no way to distinguish between undefined variables and empty strings in GitHub Actions.
+2026-11-07T01:21:36.2610252Z [36;1m# Note: There is currently no way to distinguish between undefined variables and empty strings in GitHub Actions.[0m
+2026-11-07T01:21:36.2610778Z [36;1m# This limitation affects how we handle default values and empty inputs.[0m
+2026-11-07T01:21:36.2611201Z [36;1m# For more information, see: https://github.com/actions/runner/issues/924[0m
+2026-11-07T01:21:36.2611526Z [36;1m[0m
+2026-11-07T01:21:36.2612003Z [36;1m# The following logic implements the configuration priority described in the README:[0m
+2026-11-07T01:21:36.2612349Z [36;1m#[0m
+2026-11-07T01:21:36.2612510Z [36;1m# Inputs[0m
+2026-11-07T01:21:36.2612699Z [36;1m# Environment Variables[0m
+2026-11-07T01:21:36.2612908Z [36;1m# Config File[0m
+2026-11-07T01:21:36.2613092Z [36;1m# Defaults[0m
+2026-11-07T01:21:36.2613441Z [36;1m#[0m
+2026-11-07T01:21:36.2613777Z [36;1m# As noted above defaults are awkward to handle as GitHub Actions will inject those values as the input[0m
+2026-11-07T01:21:36.2614301Z [36;1m# if the caller doesn't provide them, thus if the input matches the default we don't set it as we[0m
+2026-11-07T01:21:36.2614818Z [36;1m# can't tell the difference.  Plus if we did set it when it was the default value then it could potentially[0m
+2026-11-07T01:21:36.2615384Z [36;1m# override an external environment variable, or something in the callers configuration file, which then wouldn't[0m
+2026-11-07T01:21:36.2615846Z [36;1m# match the configuration priority that is documented.[0m
+2026-11-07T01:21:36.2616148Z [36;1mset_env_var_if_provided() {[0m
+2026-11-07T01:21:36.2616373Z [36;1m  local var_name="$1"[0m
+2026-11-07T01:21:36.2616593Z [36;1m  local input_value="$2"[0m
+2026-11-07T01:21:36.2616822Z [36;1m  local default_value="$3"[0m
+2026-11-07T01:21:36.2617030Z [36;1m[0m
+2026-11-07T01:21:36.2617271Z [36;1m  if [ -n "$input_value" ] && [ "$input_value" != "$default_value" ]; then[0m
+2026-11-07T01:21:36.2617656Z [36;1m    # If action was provided with explicit input by the caller set that[0m
+2026-11-07T01:21:36.2618076Z [36;1m    # Use printf %q to safely escape special characters and prevent command injection[0m
+2026-11-07T01:21:36.2618494Z [36;1m    printf 'export %s=%q\n' "$var_name" "$input_value" >> trivy_envs.txt[0m
+2026-11-07T01:21:36.2618783Z [36;1m  fi[0m
+2026-11-07T01:21:36.2618951Z [36;1m}[0m
+2026-11-07T01:21:36.2619110Z [36;1m[0m
+2026-11-07T01:21:36.2619346Z [36;1m# Set environment variables, handling those with default values[0m
+2026-11-07T01:21:36.2619941Z [36;1m# cf. https://aquasecurity.github.io/trivy/latest/docs/configuration/#environment-variables[0m
+2026-11-07T01:21:36.2620373Z [36;1mset_env_var_if_provided "TRIVY_INPUT" "$INPUT_INPUT" ""[0m
+2026-11-07T01:21:36.2620708Z [36;1mset_env_var_if_provided "TRIVY_EXIT_CODE" "$INPUT_EXIT_CODE" ""[0m
+2026-11-07T01:21:36.2621091Z [36;1mset_env_var_if_provided "TRIVY_IGNORE_UNFIXED" "$INPUT_IGNORE_UNFIXED" "false"[0m
+2026-11-07T01:21:36.2621507Z [36;1mset_env_var_if_provided "TRIVY_PKG_TYPES" "$INPUT_VULN_TYPE" "os,library"[0m
+2026-11-07T01:21:36.2621954Z [36;1mset_env_var_if_provided "TRIVY_SEVERITY" "$INPUT_SEVERITY" "UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL"[0m
+2026-11-07T01:21:36.2622375Z [36;1mset_env_var_if_provided "TRIVY_FORMAT" "$INPUT_FORMAT" "table"[0m
+2026-11-07T01:21:36.2622711Z [36;1mset_env_var_if_provided "TRIVY_TEMPLATE" "$INPUT_TEMPLATE" ""[0m
+2026-11-07T01:21:36.2623046Z [36;1mset_env_var_if_provided "TRIVY_OUTPUT" "$INPUT_OUTPUT" ""[0m
+2026-11-07T01:21:36.2623552Z [36;1mset_env_var_if_provided "TRIVY_SKIP_DIRS" "$INPUT_SKIP_DIRS" ""[0m
+2026-11-07T01:21:36.2623904Z [36;1mset_env_var_if_provided "TRIVY_SKIP_FILES" "$INPUT_SKIP_FILES" ""[0m
+2026-11-07T01:21:36.2624250Z [36;1mset_env_var_if_provided "TRIVY_TIMEOUT" "$INPUT_TIMEOUT" ""[0m
+2026-11-07T01:21:36.2624621Z [36;1mset_env_var_if_provided "TRIVY_IGNORE_POLICY" "$INPUT_IGNORE_POLICY" ""[0m
+2026-11-07T01:21:36.2624976Z [36;1mset_env_var_if_provided "TRIVY_QUIET" "$INPUT_HIDE_PROGRESS" ""[0m
+2026-11-07T01:21:36.2625347Z [36;1mset_env_var_if_provided "TRIVY_LIST_ALL_PKGS" "$INPUT_LIST_ALL_PKGS" "false"[0m
+2026-11-07T01:21:36.2625723Z [36;1mset_env_var_if_provided "TRIVY_SCANNERS" "$INPUT_SCANNERS" ""[0m
+2026-11-07T01:21:36.2626055Z [36;1mset_env_var_if_provided "TRIVY_CONFIG" "$INPUT_TRIVY_CONFIG" ""[0m
+2026-11-07T01:21:36.2626495Z [36;1mset_env_var_if_provided "TRIVY_TF_VARS" "$INPUT_TF_VARS" ""[0m
+2026-11-07T01:21:36.2626880Z [36;1mset_env_var_if_provided "TRIVY_DOCKER_HOST" "$INPUT_DOCKER_HOST" ""[0m
+2026-11-07T01:21:36.2665513Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-07T01:21:36.2665790Z env:
+2026-11-07T01:21:36.2665958Z   INPUT_INPUT: 
+2026-11-07T01:21:36.2666143Z   INPUT_EXIT_CODE: 0
+2026-11-07T01:21:36.2666333Z   INPUT_IGNORE_UNFIXED: false
+2026-11-07T01:21:36.2666548Z   INPUT_VULN_TYPE: os,library
+2026-11-07T01:21:36.2666757Z   INPUT_SEVERITY: HIGH,CRITICAL
+2026-11-07T01:21:36.2666960Z   INPUT_FORMAT: table
+2026-11-07T01:21:36.2667142Z   INPUT_TEMPLATE: 
+2026-11-07T01:21:36.2667316Z   INPUT_OUTPUT: 
+2026-11-07T01:21:36.2667486Z   INPUT_SKIP_DIRS: 
+2026-11-07T01:21:36.2667666Z   INPUT_SKIP_FILES: 
+2026-11-07T01:21:36.2667843Z   INPUT_TIMEOUT: 
+2026-11-07T01:21:36.2668029Z   INPUT_IGNORE_POLICY: 
+2026-11-07T01:21:36.2668227Z   INPUT_HIDE_PROGRESS: 
+2026-11-07T01:21:36.2668430Z   INPUT_LIST_ALL_PKGS: false
+2026-11-07T01:21:36.2668623Z   INPUT_SCANNERS: 
+2026-11-07T01:21:36.2668792Z   INPUT_TRIVY_CONFIG: 
+2026-11-07T01:21:36.2668982Z   INPUT_TF_VARS: 
+2026-11-07T01:21:36.2669164Z   INPUT_DOCKER_HOST: 
+2026-11-07T01:21:36.2669338Z ##[endgroup]
+2026-11-07T01:21:36.2733221Z ##[end-action id=__aquasecurity_trivy-action.__run_3;outcome=success;conclusion=success;duration_ms=13]
+2026-11-07T01:21:36.2736072Z ##[start-action display=Run Trivy;id=__aquasecurity_trivy-action.__run_4]
+2026-11-07T01:21:36.2750314Z ##[group]Run entrypoint.sh
+2026-11-07T01:21:36.2750561Z [36;1mentrypoint.sh[0m
+2026-11-07T01:21:36.2787263Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-07T01:21:36.2787533Z env:
+2026-11-07T01:21:36.2787712Z   INPUT_SCAN_TYPE: fs
+2026-11-07T01:21:36.2787905Z   INPUT_IMAGE_REF: 
+2026-11-07T01:21:36.2788080Z   INPUT_SCAN_REF: .
+2026-11-07T01:21:36.2788256Z   INPUT_TRIVYIGNORES: 
+2026-11-07T01:21:36.2788449Z   INPUT_GITHUB_PAT: 
+2026-11-07T01:21:36.2788640Z   INPUT_LIMIT_SEVERITIES_FOR_SARIF: 
+2026-11-07T01:21:36.2788981Z   TRIVY_CACHE_DIR: /home/runner/work/example-voting-app/example-voting-app/.cache/trivy
+2026-11-07T01:21:36.2789338Z ##[endgroup]
+2026-11-07T01:21:36.2926887Z Running Trivy with options: trivy fs .
+2026-11-07T01:21:36.3371058Z 2026-11-07T01:21:36Z	INFO	[vulndb] Need to update DB
+2026-11-07T01:21:36.3371656Z 2026-11-07T01:21:36Z	INFO	[vulndb] Downloading vulnerability DB...
+2026-11-07T01:21:36.3372090Z 2026-11-07T01:21:36Z	INFO	[vulndb] Downloading artifact...	repo="mirror.gcr.io/aquasec/trivy-db:2"
+2026-11-07T01:21:41.5962358Z 26.12 MiB / 132.62 MiB [----------->________________________________________________] 19.70% ? p/s ?73.70 MiB / 132.62 MiB [--------------------------------->__________________________] 55.57% ? p/s ?132.03 MiB / 132.62 MiB [---------------------------------------------------------->] 99.56% ? p/s ?132.62 MiB / 132.62 MiB [------------------------------------------->] 100.00% 177.26 MiB p/s ETA 0s132.62 MiB / 132.62 MiB [------------------------------------------->] 100.00% 177.26 MiB p/s ETA 0s132.62 MiB / 132.62 MiB [------------------------------------------->] 100.00% 177.26 MiB p/s ETA 0s132.62 MiB / 132.62 MiB [------------------------------------------->] 100.00% 165.83 MiB p/s ETA 0s132.62 MiB / 132.62 MiB [------------------------------------------->] 100.00% 165.83 MiB p/s ETA 0s132.62 MiB / 132.62 MiB [------------------------------------------->] 100.00% 165.83 MiB p/s ETA 0s132.62 MiB / 132.62 MiB [------------------------------------------->] 100.00% 155.13 MiB p/s ETA 0s132.62 MiB / 132.62 MiB [------------------------------------------->] 100.00% 155.13 MiB p/s ETA 0s132.62 MiB / 132.62 MiB [------------------------------------------->] 100.00% 155.13 MiB p/s ETA 0s132.62 MiB / 132.62 MiB [------------------------------------------->] 100.00% 145.12 MiB p/s ETA 0s132.62 MiB / 132.62 MiB [------------------------------------------->] 100.00% 145.12 MiB p/s ETA 0s132.62 MiB / 132.62 MiB [------------------------------------------->] 100.00% 145.12 MiB p/s ETA 0s132.62 MiB / 132.62 MiB [------------------------------------------->] 100.00% 135.76 MiB p/s ETA 0s132.62 MiB / 132.62 MiB [------------------------------------------->] 100.00% 135.76 MiB p/s ETA 0s132.62 MiB / 132.62 MiB [------------------------------------------->] 100.00% 135.76 MiB p/s ETA 0s132.62 MiB / 132.62 MiB [------------------------------------------->] 100.00% 127.00 MiB p/s ETA 0s132.62 MiB / 132.62 MiB [------------------------------------------->] 100.00% 127.00 MiB p/s ETA 0s132.62 MiB / 132.62 MiB [-----------------------------------------------] 100.00% 34.54 MiB p/s 4.0s2026-11-07T01:21:41Z	INFO	[vulndb] Artifact successfully downloaded	repo="mirror.gcr.io/aquasec/trivy-db:2"
+2026-11-07T01:21:41.6283177Z 2026-11-07T01:21:41Z	INFO	[vuln] Vulnerability scanning is enabled
+2026-11-07T01:21:41.6290899Z 2026-11-07T01:21:41Z	INFO	[secret] Secret scanning is enabled
+2026-11-07T01:21:41.6291416Z 2026-11-07T01:21:41Z	INFO	[secret] If your scanning is slow, please try '--scanners vuln' to disable secret scanning
+2026-11-07T01:21:41.6844436Z 2026-11-07T01:21:41Z	INFO	[secret] Please see https://trivy.dev/docs/v0.70/guide/scanner/secret#recommendation for faster secret detection
+2026-11-07T01:21:41.6845773Z 2026-11-07T01:21:41Z	WARN	[pip] Unable to find python `site-packages` directory. License detection is skipped.	err="site-packages directory not found"
+2026-11-07T01:21:41.6846889Z 2026-11-07T01:21:41Z	INFO	[npm] To collect the license information of packages, "npm install" needs to be performed beforehand	dir="result/node_modules"
+2026-11-07T01:21:41.6861862Z 2026-11-07T01:21:41Z	INFO	Number of language-specific files	num=1
+2026-11-07T01:21:41.6862407Z 2026-11-07T01:21:41Z	INFO	[npm] Detecting vulnerabilities...
+2026-11-07T01:21:41.6935568Z 
+2026-11-07T01:21:41.6935733Z Report Summary
+2026-11-07T01:21:41.6935892Z 
+2026-11-07T01:21:41.6936394Z ┌──────────────────────────┬──────┬─────────────────┬─────────┐
+2026-11-07T01:21:41.6936906Z │          Target          │ Type │ Vulnerabilities │ Secrets │
+2026-11-07T01:21:41.6937394Z ├──────────────────────────┼──────┼─────────────────┼─────────┤
+2026-11-07T01:21:41.6938212Z │ result/package-lock.json │ npm  │       12        │    -    │
+2026-11-07T01:21:41.6939094Z └──────────────────────────┴──────┴─────────────────┴─────────┘
+2026-11-07T01:21:41.6939418Z Legend:
+2026-11-07T01:21:41.6939634Z - '-': Not scanned
+2026-11-07T01:21:41.6939909Z - '0': Clean (no security findings detected)
+2026-11-07T01:21:41.6940165Z 
+2026-11-07T01:21:41.6940171Z 
+2026-11-07T01:21:41.6940294Z For OSS Maintainers: VEX Notice
+2026-11-07T01:21:41.6940604Z --------------------------------
+2026-11-07T01:21:41.6941585Z If you're an OSS maintainer and Trivy has detected vulnerabilities in your project that you believe are not actually exploitable, consider issuing a VEX (Vulnerability Exploitability eXchange) statement.
+2026-11-07T01:21:41.6942955Z VEX allows you to communicate the actual status of vulnerabilities in your project, improving security transparency and reducing false positives for your users.
+2026-11-07T01:21:41.6943848Z Learn more and start using VEX: https://trivy.dev/docs/v0.70/guide/supply-chain/vex/repo#publishing-vex-documents
+2026-11-07T01:21:41.6944210Z 
+2026-11-07T01:21:41.6944388Z To disable this notice, set the TRIVY_DISABLE_VEX_NOTICE environment variable.
+2026-11-07T01:21:41.6944639Z 
+2026-11-07T01:21:41.6944642Z 
+2026-11-07T01:21:41.6944730Z result/package-lock.json (npm)
+2026-11-07T01:21:41.6944938Z ==============================
+2026-11-07T01:21:41.6945145Z Total: 12 (HIGH: 11, CRITICAL: 1)
+2026-11-07T01:21:41.6945311Z 
+2026-11-07T01:21:41.6945744Z ┌──────────────────┬─────────────────┬──────────┬────────┬───────────────────┬────────────────────────────────────┬──────────────────────────────────────────────────────────────┐
+2026-11-07T01:21:41.6946481Z │     Library      │  Vulnerability  │ Severity │ Status │ Installed Version │           Fixed Version            │                            Title                             │
+2026-11-07T01:21:41.6947253Z ├──────────────────┼─────────────────┼──────────┼────────┼───────────────────┼────────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:41.6948207Z │ body-parser      │ CVE-2024-45590  │ HIGH     │ fixed  │ 1.20.1            │ 1.20.3                             │ body-parser: Denial of Service Vulnerability in body-parser  │
+2026-11-07T01:21:41.6948927Z │                  │                 │          │        │                   │                                    │ https://avd.aquasec.com/nvd/cve-2024-45590                   │
+2026-11-07T01:21:41.6949566Z │                  ├─────────────────┤          │        │                   ├────────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:41.6950228Z │                  │ CVE-2026-111181 │          │        │                   │ 2.4.0, 1.20.9                      │ body-parser: body-parser: Denial of Service via unhandled    │
+2026-11-07T01:21:41.6950874Z │                  │                 │          │        │                   │                                    │ decompression stream error                                   │
+2026-11-07T01:21:41.6951611Z │                  │                 │          │        │                   │                                    │ https://avd.aquasec.com/nvd/cve-2026-111181                  │
+2026-11-07T01:21:41.6952272Z ├──────────────────┼─────────────────┤          │        ├───────────────────┼────────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:41.6952942Z │ engine.io        │ CVE-2026-59724  │          │        │ 6.5.2             │ 6.6.7                              │ engine.io: Engine.IO: Denial of Service via crafted          │
+2026-11-07T01:21:41.6953781Z │                  │                 │          │        │                   │                                    │ WebTransport session ID                                      │
+2026-11-07T01:21:41.6954367Z │                  │                 │          │        │                   │                                    │ https://avd.aquasec.com/nvd/cve-2026-59724                   │
+2026-11-07T01:21:41.6955110Z │                  ├─────────────────┤          │        │                   │                                    ├──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:41.6955722Z │                  │ CVE-2026-59725  │          │        │                   │                                    │ socket.io: engine.io: Socket.IO: Denial of Service via       │
+2026-11-07T01:21:41.6956334Z │                  │                 │          │        │                   │                                    │ invalid binary POST requests                                 │
+2026-11-07T01:21:41.6956923Z │                  │                 │          │        │                   │                                    │ https://avd.aquasec.com/nvd/cve-2026-59725                   │
+2026-11-07T01:21:41.6957572Z ├──────────────────┼─────────────────┤          │        ├───────────────────┼────────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:41.6958331Z │ path-to-regexp   │ CVE-2024-45296  │          │        │ 0.1.7             │ 1.9.0, 0.1.10, 8.0.0, 3.3.0, 6.3.0 │ path-to-regexp: Backtracking regular expressions cause ReDoS │
+2026-11-07T01:21:41.6959043Z │                  │                 │          │        │                   │                                    │ https://avd.aquasec.com/nvd/cve-2024-45296                   │
+2026-11-07T01:21:41.6959682Z │                  ├─────────────────┤          │        │                   ├────────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:41.6960339Z │                  │ CVE-2024-52798  │          │        │                   │ 0.1.12                             │ path-to-regexp: path-to-regexp Unpatched `path-to-regexp`    │
+2026-11-07T01:21:41.6960962Z │                  │                 │          │        │                   │                                    │ ReDoS in 0.1.x                                               │
+2026-11-07T01:21:41.6961671Z │                  │                 │          │        │                   │                                    │ https://avd.aquasec.com/nvd/cve-2024-52798                   │
+2026-11-07T01:21:41.6962301Z │                  ├─────────────────┤          │        │                   ├────────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:41.6962928Z │                  │ CVE-2026-4867   │          │        │                   │ 0.1.13                             │ path-to-regexp: path-to-regexp: Denial of Service via        │
+2026-11-07T01:21:41.6974208Z │                  │                 │          │        │                   │                                    │ catastrophic backtracking from malformed URL parameters...   │
+2026-11-07T01:21:41.6975219Z │                  │                 │          │        │                   │                                    │ https://avd.aquasec.com/nvd/cve-2026-4867                    │
+2026-11-07T01:21:41.6976637Z ├──────────────────┼─────────────────┼──────────┤        ├───────────────────┼────────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:41.6977844Z │ proxy-addr       │ CVE-2026-90711  │ CRITICAL │        │ 2.0.7             │ 2.0.8                              │ proxy-addr: proxy-addr vulnerable to IP spoofing via         │
+2026-11-07T01:21:41.6979008Z │                  │                 │          │        │                   │                                    │ IPv4-mapped IPv6 trust subnet                                │
+2026-11-07T01:21:41.6980035Z │                  │                 │          │        │                   │                                    │ https://avd.aquasec.com/nvd/cve-2026-90711                   │
+2026-11-07T01:21:41.6981200Z ├──────────────────┼─────────────────┼──────────┤        ├───────────────────┼────────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:41.6982453Z │ socket.io-parser │ CVE-2026-33151  │ HIGH     │        │ 4.2.4             │ 3.3.5, 3.4.4, 4.2.6                │ socket.io: Socket.IO: Denial of Service due to excessive     │
+2026-11-07T01:21:41.6983764Z │                  │                 │          │        │                   │                                    │ buffering of specially crafted...                            │
+2026-11-07T01:21:41.6984791Z │                  │                 │          │        │                   │                                    │ https://avd.aquasec.com/nvd/cve-2026-33151                   │
+2026-11-07T01:21:41.6985883Z │                  ├─────────────────┤          │        │                   ├────────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:41.6986983Z │                  │ CVE-2026-69185  │          │        │                   │ 4.2.7, 3.4.5, 3.3.6                │ socket.io-parser: Socket.IO: Denial of Service via memory    │
+2026-11-07T01:21:41.6988234Z │                  │                 │          │        │                   │                                    │ exhaustion from crafted packets                              │
+2026-11-07T01:21:41.6989117Z │                  │                 │          │        │                   │                                    │ https://avd.aquasec.com/nvd/cve-2026-69185                   │
+2026-11-07T01:21:41.6989899Z ├──────────────────┼─────────────────┤          │        ├───────────────────┼────────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:41.6990582Z │ ws               │ CVE-2024-37890  │          │        │ 8.11.0            │ 5.2.4, 6.2.3, 7.5.10, 8.17.1       │ nodejs-ws: denial of service when handling a request with    │
+2026-11-07T01:21:41.6991366Z │                  │                 │          │        │                   │                                    │ many HTTP headers...                                         │
+2026-11-07T01:21:41.6991976Z │                  │                 │          │        │                   │                                    │ https://avd.aquasec.com/nvd/cve-2024-37890                   │
+2026-11-07T01:21:41.6992605Z │                  ├─────────────────┤          │        │                   ├────────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+2026-11-07T01:21:41.6993755Z │                  │ CVE-2026-48779  │          │        │                   │ 5.2.5, 6.2.4, 7.5.11, 8.21.0       │ ws: ws: Denial of Service via memory exhaustion from small   │
+2026-11-07T01:21:41.6994837Z │                  │                 │          │        │                   │                                    │ WebSocket fragments...                                       │
+2026-11-07T01:21:41.6995803Z │                  │                 │          │        │                   │                                    │ https://avd.aquasec.com/nvd/cve-2026-48779                   │
+2026-11-07T01:21:41.6997001Z └──────────────────┴─────────────────┴──────────┴────────┴───────────────────┴────────────────────────────────────┴──────────────────────────────────────────────────────────────┘
+2026-11-07T01:21:41.7001851Z ##[end-action id=__aquasecurity_trivy-action.__run_4;outcome=success;conclusion=success;duration_ms=5426]
+2026-11-07T01:21:41.7004292Z ##[start-action display=Remove Trivy Envs file;id=__aquasecurity_trivy-action.__run_5]
+2026-11-07T01:21:41.7435965Z ##[group]Run rm -f trivy_envs.txt
+2026-11-07T01:21:41.7436254Z [36;1mrm -f trivy_envs.txt[0m
+2026-11-07T01:21:41.7481290Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-07T01:21:41.7481584Z ##[endgroup]
+2026-11-07T01:21:41.8057644Z ##[end-action id=__aquasecurity_trivy-action.__run_5;outcome=success;conclusion=success;duration_ms=105]

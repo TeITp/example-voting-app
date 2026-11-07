@@ -1,0 +1,65 @@
+
+Report Summary
+
+┌──────────────────────────────────────────────────────────────────────────────────┬─────────────┬─────────────────┬─────────┐
+│                                      Target                                      │    Type     │ Vulnerabilities │ Secrets │
+├──────────────────────────────────────────────────────────────────────────────────┼─────────────┼─────────────────┼─────────┤
+│ local/voting-app-worker:pr (debian 11.9)                                         │   debian    │        6        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼─────────────┼─────────────────┼─────────┤
+│ app/Worker.deps.json                                                             │ dotnet-core │        1        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼─────────────┼─────────────────┼─────────┤
+│ usr/share/dotnet/shared/Microsoft.NETCore.App/7.0.20/Microsoft.NETCore.App.deps- │ dotnet-core │        0        │    -    │
+│ .json                                                                            │             │                 │         │
+└──────────────────────────────────────────────────────────────────────────────────┴─────────────┴─────────────────┴─────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+
+
+For OSS Maintainers: VEX Notice
+--------------------------------
+If you're an OSS maintainer and Trivy has detected vulnerabilities in your project that you believe are not actually exploitable, consider issuing a VEX (Vulnerability Exploitability eXchange) statement.
+VEX allows you to communicate the actual status of vulnerabilities in your project, improving security transparency and reducing false positives for your users.
+Learn more and start using VEX: https://trivy.dev/docs/v0.70/guide/supply-chain/vex/repo#publishing-vex-documents
+
+To disable this notice, set the TRIVY_DISABLE_VEX_NOTICE environment variable.
+
+
+local/voting-app-worker:pr (debian 11.9)
+========================================
+Total: 6 (CRITICAL: 6)
+
+┌──────────────────┬────────────────┬──────────┬────────┬───────────────────┬──────────────────┬────────────────────────────────────────────────────────────┐
+│     Library      │ Vulnerability  │ Severity │ Status │ Installed Version │  Fixed Version   │                           Title                            │
+├──────────────────┼────────────────┼──────────┼────────┼───────────────────┼──────────────────┼────────────────────────────────────────────────────────────┤
+│ libgnutls30      │ CVE-2026-33845 │ CRITICAL │ fixed  │ 3.7.1-5+deb11u4   │ 3.7.1-5+deb11u10 │ gnutls: GnuTLS: Denial of Service via DTLS zero-length     │
+│                  │                │          │        │                   │                  │ fragment                                                   │
+│                  │                │          │        │                   │                  │ https://avd.aquasec.com/nvd/cve-2026-33845                 │
+│                  ├────────────────┤          │        │                   │                  ├────────────────────────────────────────────────────────────┤
+│                  │ CVE-2026-42010 │          │        │                   │                  │ gnutls: gnutls: Authentication Bypass via NUL Character in │
+│                  │                │          │        │                   │                  │ Username                                                   │
+│                  │                │          │        │                   │                  │ https://avd.aquasec.com/nvd/cve-2026-42010                 │
+├──────────────────┼────────────────┤          │        ├───────────────────┼──────────────────┼────────────────────────────────────────────────────────────┤
+│ libgssapi-krb5-2 │ CVE-2024-37371 │          │        │ 1.18.3-6+deb11u4  │ 1.18.3-6+deb11u5 │ krb5: GSS message token handling                           │
+│                  │                │          │        │                   │                  │ https://avd.aquasec.com/nvd/cve-2024-37371                 │
+├──────────────────┤                │          │        │                   │                  │                                                            │
+│ libk5crypto3     │                │          │        │                   │                  │                                                            │
+│                  │                │          │        │                   │                  │                                                            │
+├──────────────────┤                │          │        │                   │                  │                                                            │
+│ libkrb5-3        │                │          │        │                   │                  │                                                            │
+│                  │                │          │        │                   │                  │                                                            │
+├──────────────────┤                │          │        │                   │                  │                                                            │
+│ libkrb5support0  │                │          │        │                   │                  │                                                            │
+│                  │                │          │        │                   │                  │                                                            │
+└──────────────────┴────────────────┴──────────┴────────┴───────────────────┴──────────────────┴────────────────────────────────────────────────────────────┘
+
+app/Worker.deps.json (dotnet-core)
+==================================
+Total: 1 (CRITICAL: 1)
+
+┌───────────────────────┬────────────────┬──────────┬────────┬───────────────────┬───────────────┬─────────────────────────────────────────────┐
+│        Library        │ Vulnerability  │ Severity │ Status │ Installed Version │ Fixed Version │                    Title                    │
+├───────────────────────┼────────────────┼──────────┼────────┼───────────────────┼───────────────┼─────────────────────────────────────────────┤
+│ System.Drawing.Common │ CVE-2021-24112 │ CRITICAL │ fixed  │ 5.0.0             │ 4.7.2, 5.0.3  │ dotnet: Remote Code Execution Vulnerability │
+│                       │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2021-24112  │
+└───────────────────────┴────────────────┴──────────┴────────┴───────────────────┴───────────────┴─────────────────────────────────────────────┘

@@ -1,0 +1,14 @@
+
+Report Summary
+
+┌──────────────────────────┬──────┬─────────────────┬─────────┐
+│          Target          │ Type │ Vulnerabilities │ Secrets │
+├──────────────────────────┼──────┼─────────────────┼─────────┤
+│ result/package-lock.json │ npm  │        0        │    -    │
+├──────────────────────────┼──────┼─────────────────┼─────────┤
+│ vote/requirements.txt    │ pip  │        0        │    -    │
+└──────────────────────────┴──────┴─────────────────┴─────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+

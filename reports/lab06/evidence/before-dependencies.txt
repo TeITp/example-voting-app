@@ -1,0 +1,33 @@
+
+Report Summary
+
+┌──────────────────────────┬──────┬─────────────────┬─────────┐
+│          Target          │ Type │ Vulnerabilities │ Secrets │
+├──────────────────────────┼──────┼─────────────────┼─────────┤
+│ result/package-lock.json │ npm  │        1        │    -    │
+└──────────────────────────┴──────┴─────────────────┴─────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+
+
+For OSS Maintainers: VEX Notice
+--------------------------------
+If you're an OSS maintainer and Trivy has detected vulnerabilities in your project that you believe are not actually exploitable, consider issuing a VEX (Vulnerability Exploitability eXchange) statement.
+VEX allows you to communicate the actual status of vulnerabilities in your project, improving security transparency and reducing false positives for your users.
+Learn more and start using VEX: https://trivy.dev/docs/v0.70/guide/supply-chain/vex/repo#publishing-vex-documents
+
+To disable this notice, set the TRIVY_DISABLE_VEX_NOTICE environment variable.
+
+
+result/package-lock.json (npm)
+==============================
+Total: 1 (CRITICAL: 1)
+
+┌────────────┬────────────────┬──────────┬────────┬───────────────────┬───────────────┬──────────────────────────────────────────────────────┐
+│  Library   │ Vulnerability  │ Severity │ Status │ Installed Version │ Fixed Version │                        Title                         │
+├────────────┼────────────────┼──────────┼────────┼───────────────────┼───────────────┼──────────────────────────────────────────────────────┤
+│ proxy-addr │ CVE-2026-90711 │ CRITICAL │ fixed  │ 2.0.7             │ 2.0.8         │ proxy-addr: proxy-addr vulnerable to IP spoofing via │
+│            │                │          │        │                   │               │ IPv4-mapped IPv6 trust subnet                        │
+│            │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2026-90711           │
+└────────────┴────────────────┴──────────┴────────┴───────────────────┴───────────────┴──────────────────────────────────────────────────────┘

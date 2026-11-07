@@ -1,0 +1,23 @@
+﻿2026-11-07T01:32:03.5409699Z ##[group]Run test "$(docker run --rm --entrypoint id local/voting-app-vote:pr -u)" != 0
+2026-11-07T01:32:03.5410350Z [36;1mtest "$(docker run --rm --entrypoint id local/voting-app-vote:pr -u)" != 0[0m
+2026-11-07T01:32:03.5410917Z [36;1mdocker run -d --name vote-smoke -p 127.0.0.1:5000:8080 local/voting-app-vote:pr[0m
+2026-11-07T01:32:03.5411435Z [36;1mtrap 'docker logs vote-smoke; docker rm -f vote-smoke' EXIT[0m
+2026-11-07T01:32:03.5412085Z [36;1mcurl --fail --retry 20 --retry-delay 1 --retry-connrefused --retry-all-errors http://127.0.0.1:5000/ | grep -q 'Cats'[0m
+2026-11-07T01:32:03.5412649Z [36;1mdocker rm -f vote-smoke[0m
+2026-11-07T01:32:03.5412902Z [36;1mtrap - EXIT[0m
+2026-11-07T01:32:03.5460950Z shell: /usr/bin/bash -e {0}
+2026-11-07T01:32:03.5461219Z ##[endgroup]
+2026-11-07T01:32:03.8779684Z e2e64553a5bbd44d60b6b3d8e62f2a597e8a74f650b059987839b1d5755c08df
+2026-11-07T01:32:04.0252690Z   % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+2026-11-07T01:32:04.0253838Z                                  Dload  Upload  Total   Spent   Left   Speed
+2026-11-07T01:32:04.0254378Z 
+2026-11-07T01:32:04.0259896Z   0      0   0      0   0      0      0      0                              0
+2026-11-07T01:32:04.0261077Z curl: (56) Recv failure: Connection reset by peer
+2026-11-07T01:32:04.0262158Z Warning: Problem (retrying all errors). Will retry in 1 second. 20 retries 
+2026-11-07T01:32:04.0263128Z Warning: left.
+2026-11-07T01:32:05.0271759Z 
+2026-11-07T01:32:05.0352535Z   0      0   0      0   0      0      0      0                              0
+2026-11-07T01:32:05.0354358Z 100   1285 100   1285   0      0 155.0k      0                              0
+2026-11-07T01:32:05.0355301Z 100   1285 100   1285   0      0 153.5k      0                              0
+2026-11-07T01:32:05.0356174Z 100   1285 100   1285   0      0 152.1k      0                              0
+2026-11-07T01:32:05.1802792Z vote-smoke

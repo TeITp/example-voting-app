@@ -1,0 +1,207 @@
+[
+  {
+    "id": 128256458336,
+    "name": "Dependencies, Unit Tests & Artifact Build",
+    "conclusion": "success",
+    "steps": [
+      {
+        "name": "Set up job",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run actions/checkout@v5",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run actions/setup-python@v6",
+        "conclusion": "success"
+      },
+      {
+        "name": "Install Vote dependencies and run Pytest",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run actions/setup-node@v5",
+        "conclusion": "success"
+      },
+      {
+        "name": "Install Result dependencies and validate syntax",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run actions/setup-dotnet@v5",
+        "conclusion": "success"
+      },
+      {
+        "name": "Restore, build and publish Worker",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run actions/upload-artifact@v5",
+        "conclusion": "success"
+      },
+      {
+        "name": "Post Run actions/setup-dotnet@v5",
+        "conclusion": "success"
+      },
+      {
+        "name": "Post Run actions/setup-node@v5",
+        "conclusion": "success"
+      },
+      {
+        "name": "Post Run actions/setup-python@v6",
+        "conclusion": "success"
+      },
+      {
+        "name": "Post Run actions/checkout@v5",
+        "conclusion": "success"
+      },
+      {
+        "name": "Complete job",
+        "conclusion": "success"
+      }
+    ]
+  },
+  {
+    "id": 128256458463,
+    "name": "Linters & Static Analysis",
+    "conclusion": "success",
+    "steps": [
+      {
+        "name": "Set up job",
+        "conclusion": "success"
+      },
+      {
+        "name": "Build hadolint/hadolint-action@v3.5.0",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run actions/checkout@v5",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run hadolint/hadolint-action@v3.5.0",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run hadolint/hadolint-action@v3.5.0",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run hadolint/hadolint-action@v3.5.0",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run actions/setup-python@v6",
+        "conclusion": "success"
+      },
+      {
+        "name": "Flake8 and Bandit",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run actions/setup-dotnet@v5",
+        "conclusion": "success"
+      },
+      {
+        "name": "C# static analysis",
+        "conclusion": "success"
+      },
+      {
+        "name": "Post Run actions/setup-dotnet@v5",
+        "conclusion": "success"
+      },
+      {
+        "name": "Post Run actions/setup-python@v6",
+        "conclusion": "success"
+      },
+      {
+        "name": "Post Run actions/checkout@v5",
+        "conclusion": "success"
+      },
+      {
+        "name": "Complete job",
+        "conclusion": "success"
+      }
+    ]
+  },
+  {
+    "id": 128256612032,
+    "name": "Docker Build (Dry-Run) & Trivy Security Scan",
+    "conclusion": "success",
+    "steps": [
+      {
+        "name": "Set up job",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run actions/checkout@v5",
+        "conclusion": "success"
+      },
+      {
+        "name": "Prepare scan reports",
+        "conclusion": "success"
+      },
+      {
+        "name": "Build all three images without registry push",
+        "conclusion": "success"
+      },
+      {
+        "name": "Verify Vote runs as non-root and serves HTTP on 8080",
+        "conclusion": "success"
+      },
+      {
+        "name": "Verify full voting stack",
+        "conclusion": "success"
+      },
+      {
+        "name": "Scan repository dependencies with Trivy (Hard Fail)",
+        "conclusion": "success"
+      },
+      {
+        "name": "Scan Vote image with Trivy (Hard Fail)",
+        "conclusion": "success"
+      },
+      {
+        "name": "Scan Result image with Trivy (Hard Fail)",
+        "conclusion": "success"
+      },
+      {
+        "name": "Scan Worker image with Trivy (Hard Fail)",
+        "conclusion": "success"
+      },
+      {
+        "name": "Show Trivy vulnerability tables",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run actions/upload-artifact@v5",
+        "conclusion": "success"
+      },
+      {
+        "name": "Post Scan Worker image with Trivy (Hard Fail)",
+        "conclusion": "success"
+      },
+      {
+        "name": "Post Scan Result image with Trivy (Hard Fail)",
+        "conclusion": "success"
+      },
+      {
+        "name": "Post Scan Vote image with Trivy (Hard Fail)",
+        "conclusion": "success"
+      },
+      {
+        "name": "Post Scan repository dependencies with Trivy (Hard Fail)",
+        "conclusion": "success"
+      },
+      {
+        "name": "Post Run actions/checkout@v5",
+        "conclusion": "success"
+      },
+      {
+        "name": "Complete job",
+        "conclusion": "success"
+      }
+    ]
+  }
+]

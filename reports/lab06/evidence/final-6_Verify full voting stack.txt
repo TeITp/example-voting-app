@@ -1,0 +1,486 @@
+﻿2026-11-07T01:32:05.1858157Z ##[group]Run docker compose -p lab06-ci -f docker-compose.production.yml config --quiet
+2026-11-07T01:32:05.1858851Z [36;1mdocker compose -p lab06-ci -f docker-compose.production.yml config --quiet[0m
+2026-11-07T01:32:05.1859499Z [36;1mdocker compose -p lab06-ci -f docker-compose.production.yml up -d --build --wait --wait-timeout 120[0m
+2026-11-07T01:32:05.1860397Z [36;1mtrap 'docker compose -p lab06-ci -f docker-compose.production.yml logs --tail=50; docker compose -p lab06-ci -f docker-compose.production.yml down -v' EXIT[0m
+2026-11-07T01:32:05.1861344Z [36;1mcurl --fail --retry 20 --retry-delay 1 --retry-connrefused --retry-all-errors http://127.0.0.1:5000/ | grep -q 'Cats'[0m
+2026-11-07T01:32:05.1862160Z [36;1mcurl --fail --retry 20 --retry-delay 1 --retry-connrefused --retry-all-errors http://127.0.0.1:5001/ | grep -qi 'result'[0m
+2026-11-07T01:32:05.1863107Z [36;1mcurl --fail -c /tmp/voter-cookie -b /tmp/voter-cookie -d vote=a http://127.0.0.1:5000/ >/dev/null[0m
+2026-11-07T01:32:05.1863977Z [36;1mfor attempt in $(seq 1 30); do[0m
+2026-11-07T01:32:05.1864686Z [36;1m  count=$(docker compose -p lab06-ci -f docker-compose.production.yml exec -T db psql -U postgres -tAc "SELECT COUNT(*) FROM votes WHERE vote='a'" 2>/dev/null || true)[0m
+2026-11-07T01:32:05.1865469Z [36;1m  if [ "$count" = 1 ]; then echo 'Vote persisted in PostgreSQL'; exit 0; fi[0m
+2026-11-07T01:32:05.1865839Z [36;1m  sleep 1[0m
+2026-11-07T01:32:05.1866047Z [36;1mdone[0m
+2026-11-07T01:32:05.1866283Z [36;1mecho 'Worker did not persist the vote' >&2[0m
+2026-11-07T01:32:05.1866562Z [36;1mexit 1[0m
+2026-11-07T01:32:05.1914637Z shell: /usr/bin/bash -e {0}
+2026-11-07T01:32:05.1914899Z ##[endgroup]
+2026-11-07T01:32:05.3869302Z  Image redis:8-alpine Pulling 
+2026-11-07T01:32:05.3869788Z  Image postgres:17-alpine Pulling 
+2026-11-07T01:32:05.6800227Z  253db6c496ed Pulling fs layer 0B
+2026-11-07T01:32:05.6804103Z  06b8a748e903 Pulling fs layer 0B
+2026-11-07T01:32:05.6804849Z  881fc932939e Pulling fs layer 0B
+2026-11-07T01:32:05.6805189Z  5c816eed2102 Pulling fs layer 0B
+2026-11-07T01:32:05.6805454Z  4af2f594366f Pulling fs layer 0B
+2026-11-07T01:32:05.6805862Z  0465fcfe7974 Pulling fs layer 0B
+2026-11-07T01:32:05.6806287Z  80bf5832b7b5 Pulling fs layer 0B
+2026-11-07T01:32:05.6806708Z  e0de8084b760 Pulling fs layer 0B
+2026-11-07T01:32:05.6807126Z  bdfe5a2c0729 Pulling fs layer 0B
+2026-11-07T01:32:05.6807541Z  a6e011ae4b07 Pulling fs layer 0B
+2026-11-07T01:32:05.7085122Z  6de6a661124c Pulling fs layer 0B
+2026-11-07T01:32:05.7086191Z  a5986f71dff3 Pulling fs layer 0B
+2026-11-07T01:32:05.7091334Z  74c614fb2c68 Pulling fs layer 0B
+2026-11-07T01:32:05.7092127Z  ab7525b6cc9e Pulling fs layer 0B
+2026-11-07T01:32:05.7092835Z  efd1ae24e8b5 Pulling fs layer 0B
+2026-11-07T01:32:05.7094183Z  c8ea569334dd Pulling fs layer 0B
+2026-11-07T01:32:05.7095137Z  4f4fb700ef54 Pulling fs layer 0B
+2026-11-07T01:32:05.7914162Z  c8ea569334dd Download complete 0B
+2026-11-07T01:32:05.7915286Z  80bf5832b7b5 Download complete 0B
+2026-11-07T01:32:05.7931940Z  efd1ae24e8b5 Download complete 0B
+2026-11-07T01:32:05.7934137Z  e0de8084b760 Download complete 0B
+2026-11-07T01:32:05.7948754Z  253db6c496ed Download complete 0B
+2026-11-07T01:32:05.7949869Z  4f4fb700ef54 Already exists 0B
+2026-11-07T01:32:05.7957114Z  a5986f71dff3 Download complete 0B
+2026-11-07T01:32:05.7958450Z  5c816eed2102 Download complete 0B
+2026-11-07T01:32:05.7967893Z  6de6a661124c Download complete 0B
+2026-11-07T01:32:05.7969397Z  4af2f594366f Download complete 0B
+2026-11-07T01:32:05.7977736Z  a6e011ae4b07 Download complete 0B
+2026-11-07T01:32:05.7979341Z  74c614fb2c68 Download complete 0B
+2026-11-07T01:32:05.7979964Z  ab7525b6cc9e Downloading 7.34MB
+2026-11-07T01:32:05.7997082Z  bdfe5a2c0729 Download complete 0B
+2026-11-07T01:32:05.8024688Z  881fc932939e Download complete 0B
+2026-11-07T01:32:05.8027754Z  06b8a748e903 Downloading 10.49MB
+2026-11-07T01:32:05.8034441Z  0465fcfe7974 Download complete 0B
+2026-11-07T01:32:05.8378026Z  881fc932939e Extracting 1B
+2026-11-07T01:32:05.8379380Z  74c614fb2c68 Extracting 1B
+2026-11-07T01:32:05.8911225Z  ab7525b6cc9e Downloading 18.87MB
+2026-11-07T01:32:05.8912001Z  06b8a748e903 Downloading 22.02MB
+2026-11-07T01:32:05.8947581Z  6181e1346d1c Download complete 0B
+2026-11-07T01:32:05.8949650Z  257b510d195a Download complete 0B
+2026-11-07T01:32:05.8950651Z  a1ad6b274038 Downloading 470.7kB
+2026-11-07T01:32:05.8975493Z  c932c337cdf0 Download complete 0B
+2026-11-07T01:32:05.9198988Z  74c614fb2c68 Extracting 1B
+2026-11-07T01:32:05.9415620Z  881fc932939e Extracting 1B
+2026-11-07T01:32:05.9905805Z  06b8a748e903 Downloading 38.8MB
+2026-11-07T01:32:05.9925419Z  a1ad6b274038 Download complete 0B
+2026-11-07T01:32:05.9926585Z  ab7525b6cc9e Downloading 33.55MB
+2026-11-07T01:32:06.0135857Z  881fc932939e Pull complete 0B
+2026-11-07T01:32:06.0160929Z  74c614fb2c68 Pull complete 0B
+2026-11-07T01:32:06.0896234Z  06b8a748e903 Downloading 61.87MB
+2026-11-07T01:32:06.0914388Z  80bf5832b7b5 Pull complete 0B
+2026-11-07T01:32:06.0959109Z  ab7525b6cc9e Download complete 0B
+2026-11-07T01:32:06.0962121Z  c8ea569334dd Pull complete 0B
+2026-11-07T01:32:06.1049355Z  4af2f594366f Pull complete 0B
+2026-11-07T01:32:06.1072207Z  a6e011ae4b07 Pull complete 0B
+2026-11-07T01:32:06.1101914Z  6de6a661124c Extracting 1B
+2026-11-07T01:32:06.1898446Z  06b8a748e903 Downloading 87.03MB
+2026-11-07T01:32:06.2056156Z  6de6a661124c Pull complete 0B
+2026-11-07T01:32:06.2061565Z  ab7525b6cc9e Extracting 1B
+2026-11-07T01:32:06.2904711Z  06b8a748e903 Downloading 110.1MB
+2026-11-07T01:32:06.3076289Z  ab7525b6cc9e Extracting 1B
+2026-11-07T01:32:06.3907469Z  06b8a748e903 Download complete 0B
+2026-11-07T01:32:06.4010819Z  ab7525b6cc9e Extracting 1B
+2026-11-07T01:32:06.4060119Z  06b8a748e903 Extracting 1B
+2026-11-07T01:32:06.5035903Z  ab7525b6cc9e Extracting 1B
+2026-11-07T01:32:06.5059305Z  06b8a748e903 Extracting 1B
+2026-11-07T01:32:06.6038339Z  ab7525b6cc9e Extracting 1B
+2026-11-07T01:32:06.6045528Z  06b8a748e903 Extracting 1B
+2026-11-07T01:32:06.7025543Z  ab7525b6cc9e Extracting 1B
+2026-11-07T01:32:06.7042181Z  06b8a748e903 Extracting 1B
+2026-11-07T01:32:06.7956041Z  efd1ae24e8b5 Pull complete 0B
+2026-11-07T01:32:06.7983547Z  4f4fb700ef54 Pull complete 0B
+2026-11-07T01:32:06.8010575Z  a5986f71dff3 Extracting 1B
+2026-11-07T01:32:06.8028426Z  ab7525b6cc9e Pull complete 0B
+2026-11-07T01:32:06.8052960Z  06b8a748e903 Extracting 1B
+2026-11-07T01:32:06.8326912Z  a5986f71dff3 Pull complete 0B
+2026-11-07T01:32:06.8356101Z  Image redis:8-alpine Pulled 
+2026-11-07T01:32:06.8996727Z  06b8a748e903 Extracting 1B
+2026-11-07T01:32:07.0026720Z  06b8a748e903 Extracting 1B
+2026-11-07T01:32:07.1017077Z  06b8a748e903 Extracting 1B
+2026-11-07T01:32:07.2014381Z  06b8a748e903 Extracting 1B
+2026-11-07T01:32:07.3005113Z  06b8a748e903 Extracting 1B
+2026-11-07T01:32:07.4009173Z  06b8a748e903 Extracting 1B
+2026-11-07T01:32:07.4986882Z  06b8a748e903 Extracting 2B
+2026-11-07T01:32:07.5991521Z  06b8a748e903 Extracting 2B
+2026-11-07T01:32:07.7016424Z  06b8a748e903 Extracting 2B
+2026-11-07T01:32:07.8000518Z  06b8a748e903 Extracting 2B
+2026-11-07T01:32:07.9006448Z  06b8a748e903 Extracting 2B
+2026-11-07T01:32:07.9999123Z  06b8a748e903 Extracting 2B
+2026-11-07T01:32:08.0907635Z  e0de8084b760 Pull complete 0B
+2026-11-07T01:32:08.0922604Z  253db6c496ed Pull complete 0B
+2026-11-07T01:32:08.0966767Z  e0de8084b760 Pull complete 0B
+2026-11-07T01:32:08.0984223Z  253db6c496ed Pull complete 0B
+2026-11-07T01:32:08.0996998Z  5c816eed2102 Pull complete 0B
+2026-11-07T01:32:08.1014758Z  bdfe5a2c0729 Pull complete 0B
+2026-11-07T01:32:08.1028000Z  0465fcfe7974 Pull complete 0B
+2026-11-07T01:32:08.1047147Z  06b8a748e903 Pull complete 0B
+2026-11-07T01:32:08.1052238Z  Image postgres:17-alpine Pulled 
+2026-11-07T01:32:08.1727602Z  Image lab06-ci-vote Building 
+2026-11-07T01:32:08.1728169Z  Image lab06-ci-result Building 
+2026-11-07T01:32:08.1728611Z  Image lab06-ci-worker Building 
+2026-11-07T01:32:08.2172928Z #1 [internal] load local bake definitions
+2026-11-07T01:32:08.3243834Z #1 reading from stdin 1.60kB done
+2026-11-07T01:32:08.3244390Z #1 DONE 0.0s
+2026-11-07T01:32:08.3244583Z 
+2026-11-07T01:32:08.3245409Z #2 [worker internal] load build definition from Dockerfile
+2026-11-07T01:32:08.3245884Z #2 transferring dockerfile: 379B done
+2026-11-07T01:32:08.3246340Z #2 DONE 0.0s
+2026-11-07T01:32:08.3246534Z 
+2026-11-07T01:32:08.3246776Z #3 [vote internal] load build definition from Dockerfile
+2026-11-07T01:32:08.3247327Z #3 transferring dockerfile: 753B done
+2026-11-07T01:32:08.3247974Z #3 DONE 0.0s
+2026-11-07T01:32:08.3248153Z 
+2026-11-07T01:32:08.3248371Z #4 [result internal] load build definition from Dockerfile
+2026-11-07T01:32:08.3249112Z #4 transferring dockerfile: 402B done
+2026-11-07T01:32:08.3249526Z #4 DONE 0.0s
+2026-11-07T01:32:08.3249701Z 
+2026-11-07T01:32:08.3250040Z #5 [worker internal] load metadata for mcr.microsoft.com/dotnet/runtime:10.0-noble
+2026-11-07T01:32:08.3250668Z #5 DONE 0.0s
+2026-11-07T01:32:08.3250870Z 
+2026-11-07T01:32:08.3251533Z #6 [worker internal] load metadata for mcr.microsoft.com/dotnet/sdk:10.0-noble
+2026-11-07T01:32:08.3252142Z #6 DONE 0.0s
+2026-11-07T01:32:08.3252326Z 
+2026-11-07T01:32:08.3252631Z #7 [result internal] load metadata for docker.io/library/node:24-bookworm-slim
+2026-11-07T01:32:08.4287967Z #7 DONE 0.1s
+2026-11-07T01:32:08.4288834Z 
+2026-11-07T01:32:08.4289031Z #8 [worker internal] load .dockerignore
+2026-11-07T01:32:08.4289736Z #8 transferring context: 96B done
+2026-11-07T01:32:08.4290167Z #8 DONE 0.0s
+2026-11-07T01:32:08.4290360Z 
+2026-11-07T01:32:08.4291138Z #9 [worker stage-1 1/3] FROM mcr.microsoft.com/dotnet/runtime:10.0-noble@sha256:4f1f30cf0bb4ab0c8b2daa84613051683456f8df4a9bf7c812e20d74962992ac
+2026-11-07T01:32:08.4292770Z #9 resolve mcr.microsoft.com/dotnet/runtime:10.0-noble@sha256:4f1f30cf0bb4ab0c8b2daa84613051683456f8df4a9bf7c812e20d74962992ac 0.0s done
+2026-11-07T01:32:08.4294475Z #9 DONE 0.0s
+2026-11-07T01:32:08.4294670Z 
+2026-11-07T01:32:08.4297363Z #10 [worker build 1/6] FROM mcr.microsoft.com/dotnet/sdk:10.0-noble@sha256:212fe4cb74627d5adf9817a4088906ae3edff1bd853bb27565d4b46731efe61e
+2026-11-07T01:32:08.4298843Z #10 resolve mcr.microsoft.com/dotnet/sdk:10.0-noble@sha256:212fe4cb74627d5adf9817a4088906ae3edff1bd853bb27565d4b46731efe61e 0.0s done
+2026-11-07T01:32:08.4299806Z #10 DONE 0.0s
+2026-11-07T01:32:08.4300027Z 
+2026-11-07T01:32:08.4300144Z #11 [worker internal] load build context
+2026-11-07T01:32:08.4300537Z #11 transferring context: 127B done
+2026-11-07T01:32:08.4300980Z #11 DONE 0.0s
+2026-11-07T01:32:08.4301177Z 
+2026-11-07T01:32:08.4301357Z #12 [worker stage-1 2/3] WORKDIR /app
+2026-11-07T01:32:08.4301808Z #12 CACHED
+2026-11-07T01:32:08.4301979Z 
+2026-11-07T01:32:08.4302106Z #13 [worker build 5/6] COPY . .
+2026-11-07T01:32:08.4302366Z #13 CACHED
+2026-11-07T01:32:08.4302554Z 
+2026-11-07T01:32:08.4302941Z #14 [worker build 6/6] RUN dotnet publish -c Release -o /app --no-restore --self-contained false
+2026-11-07T01:32:08.4303658Z #14 CACHED
+2026-11-07T01:32:08.4303852Z 
+2026-11-07T01:32:08.4304037Z #15 [worker build 3/6] COPY *.csproj ./
+2026-11-07T01:32:08.4304499Z #15 CACHED
+2026-11-07T01:32:08.4304672Z 
+2026-11-07T01:32:08.4304868Z #16 [worker build 4/6] RUN dotnet restore
+2026-11-07T01:32:08.4305331Z #16 CACHED
+2026-11-07T01:32:08.4305585Z 
+2026-11-07T01:32:08.4305767Z #17 [worker build 2/6] WORKDIR /source
+2026-11-07T01:32:08.4306202Z #17 CACHED
+2026-11-07T01:32:08.4306318Z 
+2026-11-07T01:32:08.4306487Z #18 [worker stage-1 3/3] COPY --from=build --chown=app:app /app ./
+2026-11-07T01:32:08.4307078Z #18 CACHED
+2026-11-07T01:32:08.4307264Z 
+2026-11-07T01:32:08.4307636Z #19 [vote internal] load metadata for docker.io/library/python:3.13-slim-bookworm
+2026-11-07T01:32:08.4308326Z #19 DONE 0.1s
+2026-11-07T01:32:08.4308504Z 
+2026-11-07T01:32:08.4308605Z #20 [vote internal] load .dockerignore
+2026-11-07T01:32:08.4308872Z #20 transferring context: 106B done
+2026-11-07T01:32:08.4309221Z #20 DONE 0.0s
+2026-11-07T01:32:08.4309328Z 
+2026-11-07T01:32:08.4309423Z #21 [vote internal] load build context
+2026-11-07T01:32:08.4309683Z #21 transferring context: 306B done
+2026-11-07T01:32:08.4309909Z #21 DONE 0.0s
+2026-11-07T01:32:08.4310014Z 
+2026-11-07T01:32:08.4310357Z #22 [result internal] load .dockerignore
+2026-11-07T01:32:08.4310623Z #22 transferring context: 54B done
+2026-11-07T01:32:08.4310865Z #22 DONE 0.0s
+2026-11-07T01:32:08.4310978Z 
+2026-11-07T01:32:08.4311078Z #23 [result internal] load build context
+2026-11-07T01:32:08.4311553Z #23 transferring context: 593B done
+2026-11-07T01:32:08.4311977Z #23 DONE 0.0s
+2026-11-07T01:32:08.4312163Z 
+2026-11-07T01:32:08.4312915Z #24 [vote base 1/5] FROM docker.io/library/python:3.13-slim-bookworm@sha256:a5a7017efc5969e00ae2b91c8eb0631049a569652aa4ffc4501769049ae45c72
+2026-11-07T01:32:08.4314351Z #24 resolve docker.io/library/python:3.13-slim-bookworm@sha256:a5a7017efc5969e00ae2b91c8eb0631049a569652aa4ffc4501769049ae45c72 0.0s done
+2026-11-07T01:32:08.4315418Z #24 DONE 0.0s
+2026-11-07T01:32:08.4315631Z 
+2026-11-07T01:32:08.4315826Z #25 [vote base 3/5] COPY requirements.txt ./
+2026-11-07T01:32:08.4316755Z #25 CACHED
+2026-11-07T01:32:08.4316873Z 
+2026-11-07T01:32:08.4317042Z #26 [vote base 2/5] WORKDIR /usr/local/app
+2026-11-07T01:32:08.4317367Z #26 CACHED
+2026-11-07T01:32:08.4317463Z 
+2026-11-07T01:32:08.4317627Z #27 [vote base 5/5] RUN useradd --create-home --uid 10001 appuser
+2026-11-07T01:32:08.4317943Z #27 CACHED
+2026-11-07T01:32:08.4318037Z 
+2026-11-07T01:32:08.4318214Z #28 [vote base 4/5] RUN pip install --no-cache-dir -r requirements.txt
+2026-11-07T01:32:08.4318551Z #28 CACHED
+2026-11-07T01:32:08.4318652Z 
+2026-11-07T01:32:08.4318782Z #29 [vote final 1/1] COPY --chown=appuser:appuser . .
+2026-11-07T01:32:08.4319064Z #29 CACHED
+2026-11-07T01:32:08.4319166Z 
+2026-11-07T01:32:08.4319576Z #30 [result base 1/4] FROM docker.io/library/node:24-bookworm-slim@sha256:01d566e8d94d8c619591d78652babfccd3c6992a3dffa9ed5ab39e11cf6c70e9
+2026-11-07T01:32:08.4320469Z #30 resolve docker.io/library/node:24-bookworm-slim@sha256:01d566e8d94d8c619591d78652babfccd3c6992a3dffa9ed5ab39e11cf6c70e9 0.0s done
+2026-11-07T01:32:08.4321036Z #30 DONE 0.0s
+2026-11-07T01:32:08.4321141Z 
+2026-11-07T01:32:08.4321245Z #31 [result base 3/4] COPY package*.json ./
+2026-11-07T01:32:08.4321508Z #31 CACHED
+2026-11-07T01:32:08.4321609Z 
+2026-11-07T01:32:08.4321866Z #32 [result base 4/4] RUN npm ci --omit=dev && npm cache clean --force && mv node_modules /node_modules
+2026-11-07T01:32:08.4322282Z #32 CACHED
+2026-11-07T01:32:08.4322383Z 
+2026-11-07T01:32:08.4322481Z #33 [result base 2/4] WORKDIR /usr/local/app
+2026-11-07T01:32:08.4322911Z #33 CACHED
+2026-11-07T01:32:08.4323101Z 
+2026-11-07T01:32:08.4323542Z #34 [result final 1/1] COPY --chown=node:node . .
+2026-11-07T01:32:08.4323891Z #34 CACHED
+2026-11-07T01:32:08.4324238Z 
+2026-11-07T01:32:08.4324405Z #35 [result] exporting to image
+2026-11-07T01:32:08.4324874Z #35 exporting layers done
+2026-11-07T01:32:08.4325615Z #35 exporting manifest sha256:65d8fcb27c91e5ac1ebc6b615e67f3a996e6615b7148a6a63ca80fb20cae1416 done
+2026-11-07T01:32:08.4326486Z #35 exporting config sha256:626cacc3eaa1e38d142217d08117a68fcc24d058d831969e2b9645d38673a756 done
+2026-11-07T01:32:08.4327388Z #35 exporting attestation manifest sha256:e7a3e016e577e4eedc5f9ed7fa81f6021291933a2aee65f1307b87d62817516f
+2026-11-07T01:32:08.5397339Z #35 exporting attestation manifest sha256:e7a3e016e577e4eedc5f9ed7fa81f6021291933a2aee65f1307b87d62817516f 0.0s done
+2026-11-07T01:32:08.5399006Z #35 exporting manifest list sha256:90be8fdc61148fbf1fc13d9918fc06bdb17fc62ad3467b8e86f97c88400f0e19 done
+2026-11-07T01:32:08.5400561Z #35 naming to docker.io/library/lab06-ci-result:latest done
+2026-11-07T01:32:08.5401843Z #35 unpacking to docker.io/library/lab06-ci-result:latest done
+2026-11-07T01:32:08.5404671Z #35 DONE 0.1s
+2026-11-07T01:32:08.5405062Z 
+2026-11-07T01:32:08.5405351Z #36 [worker] exporting to image
+2026-11-07T01:32:08.5405850Z #36 exporting layers done
+2026-11-07T01:32:08.5406643Z #36 exporting manifest sha256:17bcc3a00a10fb4c74d4def6619ef14438c4ae3985ae8323aa8a59b121c2361a done
+2026-11-07T01:32:08.5407981Z #36 exporting config sha256:e3ede9d3cb69dfb55c8bb05329094bea2cbfa955ba2e7d59a7ed14dda9fa7cce done
+2026-11-07T01:32:08.5409431Z #36 exporting attestation manifest sha256:942c39dc0a81de52b41d11b5ace283adb49f11bd0a989e76de44be092a49f161 0.0s done
+2026-11-07T01:32:08.5411171Z #36 exporting manifest list sha256:94403f3d5e116654e4f5c22baa4c1fcfa04a60cd870c15aeaa1578d15f67f097 done
+2026-11-07T01:32:08.5412306Z #36 naming to docker.io/library/lab06-ci-worker:latest done
+2026-11-07T01:32:08.5413044Z #36 unpacking to docker.io/library/lab06-ci-worker:latest 0.0s done
+2026-11-07T01:32:08.5415134Z #36 DONE 0.1s
+2026-11-07T01:32:08.5415362Z 
+2026-11-07T01:32:08.5415530Z #37 [vote] exporting to image
+2026-11-07T01:32:08.5415964Z #37 exporting layers done
+2026-11-07T01:32:08.5416724Z #37 exporting manifest sha256:86fb10fb25d42884025ab6f8ce2fa5cf27eda3d1d34237930d472b57faa81bc0 done
+2026-11-07T01:32:08.5417481Z #37 exporting config sha256:3da1cafe48d1c19cbf5f68c0c045a4394893c096f1d642679ff7e546b3a836b6 done
+2026-11-07T01:32:08.5418452Z #37 exporting attestation manifest sha256:2f1fc6cdf90f754938c7bf061d9a097890295fa727ae7af86576f1890584faea 0.0s done
+2026-11-07T01:32:08.5419430Z #37 exporting manifest list sha256:faf84c1ed79a0f79d68f55428eda7c673c3cff4caf5530f67035e4ec5931a46a done
+2026-11-07T01:32:08.5420521Z #37 naming to docker.io/library/lab06-ci-vote:latest done
+2026-11-07T01:32:08.5421149Z #37 unpacking to docker.io/library/lab06-ci-vote:latest done
+2026-11-07T01:32:08.5421659Z #37 DONE 0.1s
+2026-11-07T01:32:08.5421839Z 
+2026-11-07T01:32:08.5422042Z #38 [result] resolving provenance for metadata file
+2026-11-07T01:32:08.5516449Z #38 DONE 0.0s
+2026-11-07T01:32:08.5516772Z 
+2026-11-07T01:32:08.5517080Z #39 [vote] resolving provenance for metadata file
+2026-11-07T01:32:08.5517595Z #39 DONE 0.0s
+2026-11-07T01:32:08.5517786Z 
+2026-11-07T01:32:08.5518008Z #40 [worker] resolving provenance for metadata file
+2026-11-07T01:32:08.5518517Z #40 DONE 0.0s
+2026-11-07T01:32:08.5518763Z  Image lab06-ci-vote Built 
+2026-11-07T01:32:08.5519309Z  Image lab06-ci-worker Built 
+2026-11-07T01:32:08.5519708Z  Image lab06-ci-result Built 
+2026-11-07T01:32:08.5535988Z  Network lab06-ci_default Creating 
+2026-11-07T01:32:08.5850872Z  Network lab06-ci_default Created 
+2026-11-07T01:32:08.5855812Z  Volume lab06-ci_voting-data Creating 
+2026-11-07T01:32:08.5867134Z  Volume lab06-ci_voting-data Created 
+2026-11-07T01:32:08.5877389Z  Container lab06-ci-redis-1 Creating 
+2026-11-07T01:32:08.5877926Z  Container lab06-ci-db-1 Creating 
+2026-11-07T01:32:09.4209579Z  Container lab06-ci-redis-1 Created 
+2026-11-07T01:32:09.4210252Z  Container lab06-ci-vote-1 Creating 
+2026-11-07T01:32:09.4216297Z  Container lab06-ci-db-1 Created 
+2026-11-07T01:32:09.4216934Z  Container lab06-ci-worker-1 Creating 
+2026-11-07T01:32:09.4217452Z  Container lab06-ci-result-1 Creating 
+2026-11-07T01:32:09.4603509Z  Container lab06-ci-worker-1 Created 
+2026-11-07T01:32:09.4617221Z  Container lab06-ci-vote-1 Created 
+2026-11-07T01:32:09.4623868Z  Container lab06-ci-result-1 Created 
+2026-11-07T01:32:09.4963465Z  Container lab06-ci-redis-1 Starting 
+2026-11-07T01:32:09.4964191Z  Container lab06-ci-db-1 Starting 
+2026-11-07T01:32:09.6517656Z  Container lab06-ci-redis-1 Started 
+2026-11-07T01:32:09.6518090Z  Container lab06-ci-redis-1 Waiting 
+2026-11-07T01:32:09.6617790Z  Container lab06-ci-db-1 Started 
+2026-11-07T01:32:09.6618592Z  Container lab06-ci-db-1 Waiting 
+2026-11-07T01:32:09.6619279Z  Container lab06-ci-redis-1 Waiting 
+2026-11-07T01:32:09.6619748Z  Container lab06-ci-db-1 Waiting 
+2026-11-07T01:32:15.1529787Z  Container lab06-ci-redis-1 Healthy 
+2026-11-07T01:32:15.1530485Z  Container lab06-ci-vote-1 Starting 
+2026-11-07T01:32:15.1638403Z  Container lab06-ci-db-1 Healthy 
+2026-11-07T01:32:15.1653070Z  Container lab06-ci-redis-1 Healthy 
+2026-11-07T01:32:15.1654022Z  Container lab06-ci-worker-1 Starting 
+2026-11-07T01:32:15.1654955Z  Container lab06-ci-db-1 Healthy 
+2026-11-07T01:32:15.1655664Z  Container lab06-ci-result-1 Starting 
+2026-11-07T01:32:15.3573896Z  Container lab06-ci-vote-1 Started 
+2026-11-07T01:32:15.3690911Z  Container lab06-ci-worker-1 Started 
+2026-11-07T01:32:15.4154547Z  Container lab06-ci-result-1 Started 
+2026-11-07T01:32:15.4155504Z  Container lab06-ci-db-1 Waiting 
+2026-11-07T01:32:15.4155963Z  Container lab06-ci-vote-1 Waiting 
+2026-11-07T01:32:15.4156441Z  Container lab06-ci-result-1 Waiting 
+2026-11-07T01:32:15.4156911Z  Container lab06-ci-worker-1 Waiting 
+2026-11-07T01:32:15.4157369Z  Container lab06-ci-redis-1 Waiting 
+2026-11-07T01:32:15.9174938Z  Container lab06-ci-redis-1 Healthy 
+2026-11-07T01:32:15.9184899Z  Container lab06-ci-db-1 Healthy 
+2026-11-07T01:32:15.9187373Z  Container lab06-ci-worker-1 Healthy 
+2026-11-07T01:32:15.9188034Z  Container lab06-ci-result-1 Healthy 
+2026-11-07T01:32:20.9168089Z  Container lab06-ci-vote-1 Healthy 
+2026-11-07T01:32:20.9268653Z   % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+2026-11-07T01:32:20.9269406Z                                  Dload  Upload  Total   Spent   Left   Speed
+2026-11-07T01:32:20.9270328Z 
+2026-11-07T01:32:20.9350649Z   0      0   0      0   0      0      0      0                              0
+2026-11-07T01:32:20.9351804Z 100   1285 100   1285   0      0 157.8k      0                              0
+2026-11-07T01:32:20.9352653Z 100   1285 100   1285   0      0 156.5k      0                              0
+2026-11-07T01:32:20.9353719Z 100   1285 100   1285   0      0 155.5k      0                              0
+2026-11-07T01:32:20.9412404Z   % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+2026-11-07T01:32:20.9413174Z                                  Dload  Upload  Total   Spent   Left   Speed
+2026-11-07T01:32:20.9413772Z 
+2026-11-07T01:32:20.9507601Z   0      0   0      0   0      0      0      0                              0
+2026-11-07T01:32:20.9508712Z 100   1416 100   1416   0      0 144.6k      0                              0
+2026-11-07T01:32:20.9509955Z 100   1416 100   1416   0      0 143.8k      0                              0
+2026-11-07T01:32:20.9511079Z 100   1416 100   1416   0      0 143.0k      0                              0
+2026-11-07T01:32:20.9573118Z   % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+2026-11-07T01:32:20.9573991Z                                  Dload  Upload  Total   Spent   Left   Speed
+2026-11-07T01:32:20.9574257Z 
+2026-11-07T01:32:20.9638440Z   0      0   0      0   0      0      0      0                              0
+2026-11-07T01:32:20.9639333Z 100   1694 100   1688 100      6 249.6k    908                              0
+2026-11-07T01:32:20.9641011Z 100   1694 100   1688 100      6 247.4k    900                              0
+2026-11-07T01:32:20.9641941Z 100   1694 100   1688 100      6 245.3k    893                              0
+2026-11-07T01:32:22.1782825Z Vote persisted in PostgreSQL
+2026-11-07T01:32:22.2645525Z worker-1  | Cannot load library libgssapi_krb5.so.2 
+2026-11-07T01:32:22.2646293Z vote-1    | [2026-11-07 01:32:15 +0000] [1] [INFO] Starting gunicorn 26.2.0
+2026-11-07T01:32:22.2646897Z db-1      | 
+2026-11-07T01:32:22.2647267Z redis-1   | 1:M 07 Nov 2026 01:32:09.667 * <bf> ]
+2026-11-07T01:32:22.2647785Z db-1      | Data page checksums are disabled.
+2026-11-07T01:32:22.2648220Z db-1      | 
+2026-11-07T01:32:22.2648786Z db-1      | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+2026-11-07T01:32:22.2649437Z db-1      | creating subdirectories ... ok
+2026-11-07T01:32:22.2649914Z result-1  | App running on port 8080
+2026-11-07T01:32:22.2650332Z result-1  | Connected to db
+2026-11-07T01:32:22.2651053Z redis-1   | 1:M 07 Nov 2026 01:32:09.668 * Module 'bf' loaded from /usr/local/lib/redis/modules//redisbloom.so
+2026-11-07T01:32:22.2652139Z worker-1  | Error: libgssapi_krb5.so.2: cannot open shared object file: No such file or directory
+2026-11-07T01:32:22.2652901Z worker-1  | Connected to db
+2026-11-07T01:32:22.2653448Z worker-1  | Found redis at 172.18.0.2
+2026-11-07T01:32:22.2653891Z worker-1  | Connecting to redis
+2026-11-07T01:32:22.2654515Z vote-1    | [2026-11-07 01:32:15 +0000] [1] [INFO] Listening at: http://0.0.0.0:8080 (1)
+2026-11-07T01:32:22.2655341Z worker-1  | Processing vote for 'a' by 'a5cf872f97d4f5e635b5692a328e7911'
+2026-11-07T01:32:22.2656088Z vote-1    | [2026-11-07 01:32:15 +0000] [1] [INFO] Using worker: sync
+2026-11-07T01:32:22.2656494Z vote-1    | [2026-11-07 01:32:15 +0000] [7] [INFO] Booting worker with pid: 7
+2026-11-07T01:32:22.2656919Z db-1      | selecting dynamic shared memory implementation ... posix
+2026-11-07T01:32:22.2657343Z vote-1    | [2026-11-07 01:32:15 +0000] [8] [INFO] Booting worker with pid: 8
+2026-11-07T01:32:22.2657734Z db-1      | selecting default "max_connections" ... 100
+2026-11-07T01:32:22.2658102Z vote-1    | [2026-11-07 01:32:15 +0000] [9] [INFO] Booting worker with pid: 9
+2026-11-07T01:32:22.2658475Z db-1      | selecting default "shared_buffers" ... 128MB
+2026-11-07T01:32:22.2658853Z vote-1    | [2026-11-07 01:32:15 +0000] [10] [INFO] Booting worker with pid: 10
+2026-11-07T01:32:22.2659223Z db-1      | selecting default time zone ... UTC
+2026-11-07T01:32:22.2659888Z vote-1    | [2026-11-07 01:32:15 +0000] [1] [INFO] Control socket listening at /home/appuser/.gunicorn/gunicorn.ctl
+2026-11-07T01:32:22.2660598Z redis-1   | 1:M 07 Nov 2026 01:32:09.672 * <search> search-workers default: 4 (min of MAX_WORKER_THREADS=16 and CPU cores)
+2026-11-07T01:32:22.2661260Z vote-1    | 127.0.0.1 - - [07/Nov/2026:01:32:20 +0000] "GET / HTTP/1.1" 200 1285 "-" "Python-urllib/3.13"
+2026-11-07T01:32:22.2661830Z redis-1   | 1:M 07 Nov 2026 01:32:09.672 * <search> Redis version found by RedisSearch : 8.10.3 - oss
+2026-11-07T01:32:22.2662365Z vote-1    | 172.18.0.1 - - [07/Nov/2026:01:32:20 +0000] "GET / HTTP/1.1" 200 1285 "-" "curl/8.18.0"
+2026-11-07T01:32:22.2662843Z redis-1   | 1:M 07 Nov 2026 01:32:09.672 * <search> RediSearch version 8.10.1 (Git=)
+2026-11-07T01:32:22.2663456Z vote-1    | [2026-11-07 01:32:20,961] INFO in app: Received vote for a
+2026-11-07T01:32:22.2665472Z redis-1   | 1:M 07 Nov 2026 01:32:09.672 * <search> gc: ON, prefix min length: 2, min word length to stem: 4, prefix max expansions: 200, query timeout (ms): 500, timeout policy: return, oom policy: return, cursor read size: 1000, cursor max idle (ms): 300000, max doctable size: 1000000, max number of search results:  1000000, default scorer: BM25STD, 
+2026-11-07T01:32:22.2667490Z redis-1   | 1:M 07 Nov 2026 01:32:09.672 * <search> Initialized thread pools!
+2026-11-07T01:32:22.2668207Z redis-1   | 1:M 07 Nov 2026 01:32:09.672 * <search> Enabled workers threadpool of size 4
+2026-11-07T01:32:22.2668921Z redis-1   | 1:M 07 Nov 2026 01:32:09.672 * <search> Subscribe to config changes
+2026-11-07T01:32:22.2669654Z redis-1   | 1:M 07 Nov 2026 01:32:09.672 * <search> Subscribe to cluster slot migration events
+2026-11-07T01:32:22.2670459Z redis-1   | 1:M 07 Nov 2026 01:32:09.672 * <search> Subscribe to cluster topology change events
+2026-11-07T01:32:22.2671241Z redis-1   | 1:M 07 Nov 2026 01:32:09.672 * <search> Enabled role change notification
+2026-11-07T01:32:22.2672198Z redis-1   | 1:M 07 Nov 2026 01:32:09.672 * <search> Cluster configuration: AUTO partitions, type: 0, coordinator timeout: 0ms
+2026-11-07T01:32:22.2673446Z redis-1   | 1:M 07 Nov 2026 01:32:09.673 * Module 'search' loaded from /usr/local/lib/redis/modules//redisearch.so
+2026-11-07T01:32:22.2674400Z redis-1   | 1:M 07 Nov 2026 01:32:09.673 * <timeseries> RedisTimeSeries version 81001, git_sha=
+2026-11-07T01:32:22.2675300Z redis-1   | 1:M 07 Nov 2026 01:32:09.673 * <timeseries> Redis version found by RedisTimeSeries : 8.10.3 - oss
+2026-11-07T01:32:22.2676207Z redis-1   | 1:M 07 Nov 2026 01:32:09.673 * <timeseries> Registering configuration options: [
+2026-11-07T01:32:22.2677031Z redis-1   | 1:M 07 Nov 2026 01:32:09.673 * <timeseries> 	{ ts-compaction-policy   :              }
+2026-11-07T01:32:22.2677885Z redis-1   | 1:M 07 Nov 2026 01:32:09.673 * <timeseries> 	{ ts-num-threads         :            3 }
+2026-11-07T01:32:22.2678754Z redis-1   | 1:M 07 Nov 2026 01:32:09.673 * <timeseries> 	{ ts-libmr-protocol      :     INTERNAL }
+2026-11-07T01:32:22.2679594Z redis-1   | 1:M 07 Nov 2026 01:32:09.673 * <timeseries> 	{ ts-retention-policy    :            0 }
+2026-11-07T01:32:22.2680633Z redis-1   | 1:M 07 Nov 2026 01:32:09.673 * <timeseries> 	{ ts-duplicate-policy    :        block }
+2026-11-07T01:32:22.2681541Z redis-1   | 1:M 07 Nov 2026 01:32:09.673 * <timeseries> 	{ ts-chunk-size-bytes    :         4096 }
+2026-11-07T01:32:22.2682471Z redis-1   | 1:M 07 Nov 2026 01:32:09.673 * <timeseries> 	{ ts-encoding            :   compressed }
+2026-11-07T01:32:22.2683556Z redis-1   | 1:M 07 Nov 2026 01:32:09.673 * <timeseries> 	{ ts-ignore-max-time-diff:            0 }
+2026-11-07T01:32:22.2684464Z redis-1   | 1:M 07 Nov 2026 01:32:09.673 * <timeseries> 	{ ts-ignore-max-val-diff :     0.000000 }
+2026-11-07T01:32:22.2685358Z redis-1   | 1:M 07 Nov 2026 01:32:09.673 * <timeseries> 	{ ts-topology-events     :         true }
+2026-11-07T01:32:22.2686091Z redis-1   | 1:M 07 Nov 2026 01:32:09.673 * <timeseries> ]
+2026-11-07T01:32:22.2686993Z redis-1   | 1:M 07 Nov 2026 01:32:09.673 * <timeseries> Detected redis oss (cluster-enabled=no)
+2026-11-07T01:32:22.2687775Z redis-1   | 1:M 07 Nov 2026 01:32:09.673 * <timeseries> Subscribe to ASM events
+2026-11-07T01:32:22.2688502Z redis-1   | 1:M 07 Nov 2026 01:32:09.673 * <timeseries> Subscribe to topology changes events
+2026-11-07T01:32:22.2689146Z redis-1   | 1:M 07 Nov 2026 01:32:09.674 * <timeseries> Enabled diskless replication
+2026-11-07T01:32:22.2690014Z redis-1   | 1:M 07 Nov 2026 01:32:09.674 * Module 'timeseries' loaded from /usr/local/lib/redis/modules//redistimeseries.so
+2026-11-07T01:32:22.2691096Z redis-1   | 1:M 07 Nov 2026 01:32:09.674 * <ReJSON> Created new data type 'ReJSON-RL'
+2026-11-07T01:32:22.2691741Z redis-1   | 1:M 07 Nov 2026 01:32:09.674 * <ReJSON> version: 81000 git sha: unknown branch: unknown
+2026-11-07T01:32:22.2692252Z redis-1   | 1:M 07 Nov 2026 01:32:09.674 * <ReJSON> Exported RedisJSON_V1 API
+2026-11-07T01:32:22.2692682Z redis-1   | 1:M 07 Nov 2026 01:32:09.674 * <ReJSON> Exported RedisJSON_V2 API
+2026-11-07T01:32:22.2693121Z redis-1   | 1:M 07 Nov 2026 01:32:09.674 * <ReJSON> Exported RedisJSON_V3 API
+2026-11-07T01:32:22.2694165Z redis-1   | 1:M 07 Nov 2026 01:32:09.674 * <ReJSON> Exported RedisJSON_V4 API
+2026-11-07T01:32:22.2694807Z db-1      | creating configuration files ... ok
+2026-11-07T01:32:22.2695389Z vote-1    | [2026-11-07 01:32:20 +0000] [7] [INFO] Received vote for a
+2026-11-07T01:32:22.2695944Z db-1      | running bootstrap script ... ok
+2026-11-07T01:32:22.2696387Z db-1      | sh: locale: not found
+2026-11-07T01:32:22.2696954Z db-1      | 2026-11-07 01:32:10.097 UTC [36] WARNING:  no usable system locales were found
+2026-11-07T01:32:22.2697697Z db-1      | performing post-bootstrap initialization ... ok
+2026-11-07T01:32:22.2698228Z db-1      | syncing data to disk ... ok
+2026-11-07T01:32:22.2698784Z redis-1   | 1:M 07 Nov 2026 01:32:09.674 * <ReJSON> Exported RedisJSON_V5 API
+2026-11-07T01:32:22.2699341Z db-1      | 
+2026-11-07T01:32:22.2699629Z db-1      | 
+2026-11-07T01:32:22.2700031Z db-1      | Success. You can now start the database server using:
+2026-11-07T01:32:22.2700541Z db-1      | 
+2026-11-07T01:32:22.2701099Z db-1      |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+2026-11-07T01:32:22.2701608Z db-1      | 
+2026-11-07T01:32:22.2702101Z db-1      | initdb: warning: enabling "trust" authentication for local connections
+2026-11-07T01:32:22.2703438Z db-1      | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+2026-11-07T01:32:22.2705027Z db-1      | waiting for server to start....2026-11-07 01:32:10.648 UTC [42] LOG:  starting PostgreSQL 17.11 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+2026-11-07T01:32:22.2706437Z db-1      | 2026-11-07 01:32:10.648 UTC [42] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2026-11-07T01:32:22.2707466Z db-1      | 2026-11-07 01:32:10.651 UTC [45] LOG:  database system was shut down at 2026-11-07 01:32:10 UTC
+2026-11-07T01:32:22.2708415Z db-1      | 2026-11-07 01:32:10.655 UTC [42] LOG:  database system is ready to accept connections
+2026-11-07T01:32:22.2709320Z db-1      |  done
+2026-11-07T01:32:22.2709655Z db-1      | server started
+2026-11-07T01:32:22.2710023Z db-1      | 
+2026-11-07T01:32:22.2710587Z db-1      | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+2026-11-07T01:32:22.2711278Z db-1      | 
+2026-11-07T01:32:22.2711935Z db-1      | waiting for server to shut down...2026-11-07 01:32:10.748 UTC [42] LOG:  received fast shutdown request
+2026-11-07T01:32:22.2712834Z db-1      | .2026-11-07 01:32:10.748 UTC [42] LOG:  aborting any active transactions
+2026-11-07T01:32:22.2713690Z db-1      | 2026-11-07 01:32:10.752 UTC [42] LOG:  background worker "logical replication launcher" (PID 48) exited with exit code 1
+2026-11-07T01:32:22.2714263Z db-1      | 2026-11-07 01:32:10.753 UTC [43] LOG:  shutting down
+2026-11-07T01:32:22.2714947Z db-1      | 2026-11-07 01:32:10.754 UTC [43] LOG:  checkpoint starting: shutdown immediate
+2026-11-07T01:32:22.2716248Z db-1      | 2026-11-07 01:32:10.755 UTC [43] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.003 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/14F3F98, redo lsn=0/14F3F98
+2026-11-07T01:32:22.2717322Z db-1      | 2026-11-07 01:32:10.760 UTC [42] LOG:  database system is shut down
+2026-11-07T01:32:22.2717664Z db-1      |  done
+2026-11-07T01:32:22.2717860Z db-1      | server stopped
+2026-11-07T01:32:22.2718075Z db-1      | 
+2026-11-07T01:32:22.2718326Z db-1      | PostgreSQL init process complete; ready for start up.
+2026-11-07T01:32:22.2718639Z db-1      | 
+2026-11-07T01:32:22.2719120Z db-1      | 2026-11-07 01:32:10.868 UTC [1] LOG:  starting PostgreSQL 17.11 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+2026-11-07T01:32:22.2719786Z db-1      | 2026-11-07 01:32:10.868 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2026-11-07T01:32:22.2723905Z db-1      | 2026-11-07 01:32:10.868 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+2026-11-07T01:32:22.2724545Z db-1      | 2026-11-07 01:32:10.869 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2026-11-07T01:32:22.2725177Z db-1      | 2026-11-07 01:32:10.871 UTC [56] LOG:  database system was shut down at 2026-11-07 01:32:10 UTC
+2026-11-07T01:32:22.2725734Z db-1      | 2026-11-07 01:32:10.876 UTC [1] LOG:  database system is ready to accept connections
+2026-11-07T01:32:22.2726228Z redis-1   | 1:M 07 Nov 2026 01:32:09.674 * <ReJSON> Exported RedisJSON_V6 API
+2026-11-07T01:32:22.2726667Z redis-1   | 1:M 07 Nov 2026 01:32:09.674 * <ReJSON> Exported RedisJSON_V7 API
+2026-11-07T01:32:22.2727079Z redis-1   | 1:M 07 Nov 2026 01:32:09.674 * <ReJSON> Exported RedisJSON_V8 API
+2026-11-07T01:32:22.2727498Z redis-1   | 1:M 07 Nov 2026 01:32:09.674 * <ReJSON> Enabled diskless replication
+2026-11-07T01:32:22.2728004Z redis-1   | 1:M 07 Nov 2026 01:32:09.674 * <ReJSON> Initialized shared string cache, thread safe: true.
+2026-11-07T01:32:22.2728591Z redis-1   | 1:M 07 Nov 2026 01:32:09.674 * Module 'ReJSON' loaded from /usr/local/lib/redis/modules//rejson.so
+2026-11-07T01:32:22.2729108Z redis-1   | 1:M 07 Nov 2026 01:32:09.674 * <search> Acquired RedisJSON_V8 API
+2026-11-07T01:32:22.2729499Z redis-1   | 1:M 07 Nov 2026 01:32:09.675 * Server initialized
+2026-11-07T01:32:22.2729876Z redis-1   | 1:M 07 Nov 2026 01:32:09.675 * Ready to accept connections tcp
+2026-11-07T01:32:22.2730729Z redis-1   | 1:M 07 Nov 2026 01:32:09.675 # WARNING: Redis does not require authentication and is not protected by network restrictions. Redis will accept connections from any IP address on any network interface.
+2026-11-07T01:32:22.2731632Z vote-1    | 172.18.0.1 - - [07/Nov/2026:01:32:20 +0000] "POST / HTTP/1.1" 200 1688 "-" "curl/8.18.0"
+2026-11-07T01:32:22.3549214Z  Container lab06-ci-worker-1 Stopping 
+2026-11-07T01:32:22.3550324Z  Container lab06-ci-vote-1 Stopping 
+2026-11-07T01:32:22.3551438Z  Container lab06-ci-result-1 Stopping 
+2026-11-07T01:32:22.5137477Z  Container lab06-ci-worker-1 Stopped 
+2026-11-07T01:32:22.5138274Z  Container lab06-ci-worker-1 Removing 
+2026-11-07T01:32:22.5221036Z  Container lab06-ci-worker-1 Removed 
+2026-11-07T01:32:22.7964950Z  Container lab06-ci-vote-1 Stopped 
+2026-11-07T01:32:22.7965789Z  Container lab06-ci-vote-1 Removing 
+2026-11-07T01:32:22.8074071Z  Container lab06-ci-vote-1 Removed 
+2026-11-07T01:32:22.8074609Z  Container lab06-ci-redis-1 Stopping 
+2026-11-07T01:32:22.9114532Z  Container lab06-ci-redis-1 Stopped 
+2026-11-07T01:32:22.9115322Z  Container lab06-ci-redis-1 Removing 
+2026-11-07T01:32:22.9195818Z  Container lab06-ci-redis-1 Removed 
+2026-11-07T01:32:32.4807460Z  Container lab06-ci-result-1 Stopped 
+2026-11-07T01:32:32.4808073Z  Container lab06-ci-result-1 Removing 
+2026-11-07T01:32:32.4900224Z  Container lab06-ci-result-1 Removed 
+2026-11-07T01:32:32.4901143Z  Container lab06-ci-db-1 Stopping 
+2026-11-07T01:32:32.5808878Z  Container lab06-ci-db-1 Stopped 
+2026-11-07T01:32:32.5809387Z  Container lab06-ci-db-1 Removing 
+2026-11-07T01:32:32.5886722Z  Container lab06-ci-db-1 Removed 
+2026-11-07T01:32:32.5892848Z  Volume lab06-ci_voting-data Removing 
+2026-11-07T01:32:32.5894458Z  Network lab06-ci_default Removing 
+2026-11-07T01:32:32.6365914Z  Network lab06-ci_default Removed 
+2026-11-07T01:32:32.6687414Z  Volume lab06-ci_voting-data Removed 
