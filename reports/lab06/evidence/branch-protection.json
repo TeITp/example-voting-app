@@ -1,0 +1,14 @@
+{
+  "branch": "main",
+  "strict": true,
+  "enforce_admins": true,
+  "required_checks": [
+    "Linters & Static Analysis",
+    "Dependencies, Unit Tests & Artifact Build",
+    "Docker Build (Dry-Run) & Trivy Security Scan",
+    "CodeQL (python)",
+    "CodeQL (javascript-typescript)",
+    "CodeQL (csharp)",
+    "CodeQL"
+  ]
+}

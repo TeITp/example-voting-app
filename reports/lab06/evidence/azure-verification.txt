@@ -1,0 +1,16 @@
+Azure Portal Run Command, 2026-11-07
+Validated source commit: 9bf0520ee49695275012e758c959586b52b23aca
+Vote process UID: 10001
+Vote HTTP status: 200
+Result HTTP status: 200
+End-to-end verification: vote b persisted in PostgreSQL
+
+Containers:
+lab06-voting-db-1       postgres:17-alpine    Up (healthy), internal 5432/tcp
+lab06-voting-redis-1    redis:8-alpine        Up (healthy), internal 6379/tcp
+lab06-voting-result-1   lab06-voting-result   Up, 127.0.0.1:5001->8080/tcp
+lab06-voting-vote-1     lab06-voting-vote     Up (healthy), 127.0.0.1:5000->8080/tcp
+lab06-voting-worker-1   lab06-voting-worker   Up
+
+Results transcribed from the successful Azure Portal output.
+The deployment was verified using the exact PR commit after all required CI checks passed.

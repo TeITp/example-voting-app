@@ -1,32 +1,18 @@
-# base defines a base stage that uses the official python runtime base image
-FROM python:3.11-slim AS base
-
-# Add curl for healthcheck
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends curl && \
-    rm -rf /var/lib/apt/lists/*
-
-# Set the application directory
+FROM python:3.13-slim-bookworm AS base
 WORKDIR /usr/local/app
-
-# Install our requirements.txt
-COPY requirements.txt ./requirements.txt
+COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
+RUN useradd --create-home --uid 10001 appuser
+ENV PORT=8080
+EXPOSE 8080
 
-# dev defines a stage for development, where it'll watch for filesystem changes
 FROM base AS dev
-RUN pip install watchdog
-ENV FLASK_ENV=development
-CMD ["python", "app.py"]
+COPY --chown=appuser:appuser . .
+USER 10001
+CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:8080", "--reload", "--access-logfile", "-"]
 
-# final defines the stage that will bundle the application for production
 FROM base AS final
-
-# Copy our code from the current folder to the working directory inside the container
-COPY . .
-
-# Make port 80 available for links and/or publish
-EXPOSE 80
-
-# Define our command to be run when launching the container
-CMD ["gunicorn", "app:app", "-b", "0.0.0.0:80", "--log-file", "-", "--access-logfile", "-", "--workers", "4", "--keep-alive", "0"]
+COPY --chown=appuser:appuser . .
+USER 10001
+HEALTHCHECK --interval=15s --timeout=5s --start-period=10s CMD ["python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/', timeout=3)"]
+CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:8080", "--workers", "4", "--access-logfile", "-", "--error-logfile", "-"]

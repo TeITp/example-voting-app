@@ -1,0 +1,71 @@
+﻿2026-11-07T01:31:07.5900628Z ##[group]Run python -m pip install -r requirements.txt pytest
+2026-11-07T01:31:07.5901096Z [36;1mpython -m pip install -r requirements.txt pytest[0m
+2026-11-07T01:31:07.5901413Z [36;1mpython -m pytest test_app.py -v[0m
+2026-11-07T01:31:07.5952791Z shell: /usr/bin/bash -e {0}
+2026-11-07T01:31:07.5953046Z env:
+2026-11-07T01:31:07.5953290Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-07T01:31:07.5953664Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-07T01:31:07.5954013Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-07T01:31:07.5954318Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-07T01:31:07.5954626Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-07T01:31:07.5954972Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-07T01:31:07.5955235Z ##[endgroup]
+2026-11-07T01:31:08.0674781Z Collecting pytest
+2026-11-07T01:31:08.0689101Z   Using cached pytest-9.2.0-py3-none-any.whl.metadata (7.9 kB)
+2026-11-07T01:31:08.0958240Z Collecting Flask==3.1.3 (from -r requirements.txt (line 1))
+2026-11-07T01:31:08.0970863Z   Using cached flask-3.1.3-py3-none-any.whl.metadata (3.2 kB)
+2026-11-07T01:31:08.1408382Z Collecting redis==8.1.0 (from -r requirements.txt (line 2))
+2026-11-07T01:31:08.1420548Z   Using cached redis-8.1.0-py3-none-any.whl.metadata (16 kB)
+2026-11-07T01:31:08.1694296Z Collecting gunicorn==26.2.0 (from -r requirements.txt (line 3))
+2026-11-07T01:31:08.1706477Z   Using cached gunicorn-26.2.0-py3-none-any.whl.metadata (5.5 kB)
+2026-11-07T01:31:08.1958384Z Collecting blinker>=1.9.0 (from Flask==3.1.3->-r requirements.txt (line 1))
+2026-11-07T01:31:08.1968964Z   Using cached blinker-1.9.0-py3-none-any.whl.metadata (1.6 kB)
+2026-11-07T01:31:08.2321901Z Collecting click>=8.1.3 (from Flask==3.1.3->-r requirements.txt (line 1))
+2026-11-07T01:31:08.2333659Z   Using cached click-8.5.1-py3-none-any.whl.metadata (2.6 kB)
+2026-11-07T01:31:08.2572689Z Collecting itsdangerous>=2.2.0 (from Flask==3.1.3->-r requirements.txt (line 1))
+2026-11-07T01:31:08.2583557Z   Using cached itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)
+2026-11-07T01:31:08.2837072Z Collecting jinja2>=3.1.2 (from Flask==3.1.3->-r requirements.txt (line 1))
+2026-11-07T01:31:08.2848596Z   Using cached jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+2026-11-07T01:31:08.3360269Z Collecting markupsafe>=2.1.1 (from Flask==3.1.3->-r requirements.txt (line 1))
+2026-11-07T01:31:08.3373054Z   Using cached markupsafe-3.0.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+2026-11-07T01:31:08.3658354Z Collecting werkzeug>=3.1.0 (from Flask==3.1.3->-r requirements.txt (line 1))
+2026-11-07T01:31:08.3669785Z   Using cached werkzeug-3.1.9-py3-none-any.whl.metadata (4.1 kB)
+2026-11-07T01:31:08.3917988Z Collecting iniconfig>=2 (from pytest)
+2026-11-07T01:31:08.3934061Z   Using cached iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+2026-11-07T01:31:08.4245288Z Collecting packaging>=24 (from pytest)
+2026-11-07T01:31:08.4257056Z   Using cached packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+2026-11-07T01:31:08.4500782Z Collecting pluggy<2,>=1.6 (from pytest)
+2026-11-07T01:31:08.4511527Z   Using cached pluggy-1.7.0-py3-none-any.whl.metadata (5.0 kB)
+2026-11-07T01:31:08.4784096Z Collecting pygments>=2.15 (from pytest)
+2026-11-07T01:31:08.4795353Z   Using cached pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+2026-11-07T01:31:08.4840626Z Using cached flask-3.1.3-py3-none-any.whl (103 kB)
+2026-11-07T01:31:08.4851605Z Using cached redis-8.1.0-py3-none-any.whl (560 kB)
+2026-11-07T01:31:08.4863360Z Using cached gunicorn-26.2.0-py3-none-any.whl (228 kB)
+2026-11-07T01:31:08.4873684Z Using cached pytest-9.2.0-py3-none-any.whl (411 kB)
+2026-11-07T01:31:08.4884895Z Using cached pluggy-1.7.0-py3-none-any.whl (27 kB)
+2026-11-07T01:31:08.4894862Z Using cached blinker-1.9.0-py3-none-any.whl (8.5 kB)
+2026-11-07T01:31:08.4904721Z Using cached click-8.5.1-py3-none-any.whl (126 kB)
+2026-11-07T01:31:08.4914882Z Using cached iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+2026-11-07T01:31:08.4924579Z Using cached itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+2026-11-07T01:31:08.4934493Z Using cached jinja2-3.1.6-py3-none-any.whl (134 kB)
+2026-11-07T01:31:08.4945088Z Using cached markupsafe-3.0.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+2026-11-07T01:31:08.4954446Z Using cached packaging-26.3-py3-none-any.whl (129 kB)
+2026-11-07T01:31:08.4964559Z Using cached pygments-2.21.0-py3-none-any.whl (1.3 MB)
+2026-11-07T01:31:08.4978709Z Using cached werkzeug-3.1.9-py3-none-any.whl (228 kB)
+2026-11-07T01:31:08.5541576Z Installing collected packages: redis, pygments, pluggy, packaging, markupsafe, itsdangerous, iniconfig, gunicorn, click, blinker, werkzeug, pytest, jinja2, Flask
+2026-11-07T01:31:10.0088049Z 
+2026-11-07T01:31:10.0098106Z Successfully installed Flask-3.1.3 blinker-1.9.0 click-8.5.1 gunicorn-26.2.0 iniconfig-2.3.1 itsdangerous-2.2.0 jinja2-3.1.6 markupsafe-3.0.4 packaging-26.3 pluggy-1.7.0 pygments-2.21.0 pytest-9.2.0 redis-8.1.0 werkzeug-3.1.9
+2026-11-07T01:31:10.0104386Z 
+2026-11-07T01:31:10.0104611Z [notice] A new release of pip is available: 26.2.2 -> 26.3
+2026-11-07T01:31:10.0104998Z [notice] To update, run: pip install --upgrade pip
+2026-11-07T01:31:10.3262585Z ============================= test session starts ==============================
+2026-11-07T01:31:10.3263418Z platform linux -- Python 3.11.18, pytest-9.2.0, pluggy-1.7.0 -- /opt/hostedtoolcache/Python/3.11.18/x64/bin/python
+2026-11-07T01:31:10.3264343Z cachedir: .pytest_cache
+2026-11-07T01:31:10.3264818Z rootdir: /home/runner/work/example-voting-app/example-voting-app/vote
+2026-11-07T01:31:10.5810362Z collecting ... collected 3 items
+2026-11-07T01:31:10.5810652Z 
+2026-11-07T01:31:10.5869393Z test_app.py::test_vote_page_loads PASSED                                 [ 33%]
+2026-11-07T01:31:10.5885731Z test_app.py::test_vote_is_queued[a] PASSED                               [ 66%]
+2026-11-07T01:31:10.6079685Z test_app.py::test_vote_is_queued[b] PASSED                               [100%]
+2026-11-07T01:31:10.6080123Z 
+2026-11-07T01:31:10.6080299Z ============================== 3 passed in 0.27s ===============================

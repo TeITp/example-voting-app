@@ -20,6 +20,8 @@ on:
 
 jobs:
   call-docker-build:
+    # Upstream publisher uses dockersamples registry credentials, not this fork.
+    if: github.repository == 'dockersamples/example-voting-app'
 
     name: Vote Call Docker Build
 

@@ -11,7 +11,7 @@ services:
       redis:
         condition: service_healthy
     healthcheck: 
-      test: ["CMD", "curl", "-f", "http://localhost"]
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/', timeout=3)"]
       interval: 15s
       timeout: 5s
       retries: 3
@@ -19,22 +19,23 @@ services:
     volumes:
      - ./vote:/usr/local/app
     ports:
-      - "8080:80"
+      - "5000:8080"
     networks:
       - front-tier
       - back-tier
 
   result:
-    build: ./result
-    # use nodemon rather than node for local dev
-    entrypoint: nodemon --inspect=0.0.0.0 server.js
+    build:
+      context: ./result
+      target: dev
+    command: ["node", "--watch", "--inspect=0.0.0.0", "server.js"]
     depends_on:
       db:
         condition: service_healthy 
     volumes:
       - ./result:/usr/local/app
     ports:
-      - "8081:80"
+      - "8081:8080"
       - "127.0.0.1:9229:9229"
     networks:
       - front-tier
