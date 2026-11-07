@@ -8,5 +8,5 @@ RUN dotnet publish -c Release -o /app --no-restore --self-contained false
 FROM mcr.microsoft.com/dotnet/runtime:10.0-noble
 WORKDIR /app
 COPY --from=build --chown=app:app /app ./
-USER app
+USER 1654
 ENTRYPOINT ["dotnet", "Worker.dll"]

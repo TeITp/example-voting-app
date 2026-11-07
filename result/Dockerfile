@@ -7,10 +7,10 @@ EXPOSE 8080
 
 FROM base AS dev
 COPY --chown=node:node . .
-USER node
+USER 1000
 CMD ["node", "--watch", "server.js"]
 
 FROM base AS final
 COPY --chown=node:node . .
-USER node
+USER 1000
 CMD ["node", "server.js"]

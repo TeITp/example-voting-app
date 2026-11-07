@@ -8,11 +8,11 @@ EXPOSE 8080
 
 FROM base AS dev
 COPY --chown=appuser:appuser . .
-USER appuser
+USER 10001
 CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:8080", "--reload", "--access-logfile", "-"]
 
 FROM base AS final
 COPY --chown=appuser:appuser . .
-USER appuser
+USER 10001
 HEALTHCHECK --interval=15s --timeout=5s --start-period=10s CMD ["python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/', timeout=3)"]
 CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:8080", "--workers", "4", "--access-logfile", "-", "--error-logfile", "-"]

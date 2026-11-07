@@ -1,0 +1,51 @@
+# Local-only publication for verification on an existing Azure VM.
+services:
+  vote:
+    build:
+      context: ./vote
+      target: final
+    ports: ["127.0.0.1:5000:8080"]
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+  result:
+    build:
+      context: ./result
+      target: final
+    ports: ["127.0.0.1:5001:8080"]
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+  worker:
+    build: ./worker
+    depends_on:
+      redis:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+  redis:
+    image: redis:8-alpine
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_HOST_AUTH_METHOD: scram-sha-256
+    volumes: ["voting-data:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+volumes:
+  voting-data:
