@@ -99,6 +99,23 @@ jobs:
           docker run -d --name vote-smoke -p 127.0.0.1:5000:8080 local/voting-app-vote:pr
           trap 'docker logs vote-smoke; docker rm -f vote-smoke' EXIT
           curl --fail --retry 20 --retry-delay 1 --retry-connrefused http://127.0.0.1:5000/ | grep -q 'Cats'
+          docker rm -f vote-smoke
+          trap - EXIT
+      - name: Verify full voting stack
+        run: |
+          docker compose -p lab06-ci -f docker-compose.production.yml config --quiet
+          docker compose -p lab06-ci -f docker-compose.production.yml up -d --build --wait --wait-timeout 120
+          trap 'docker compose -p lab06-ci -f docker-compose.production.yml logs --tail=50; docker compose -p lab06-ci -f docker-compose.production.yml down -v' EXIT
+          curl --fail --retry 20 --retry-delay 1 --retry-connrefused http://127.0.0.1:5000/ | grep -q 'Cats'
+          curl --fail --retry 20 --retry-delay 1 --retry-connrefused http://127.0.0.1:5001/ | grep -qi 'result'
+          curl --fail -c /tmp/voter-cookie -b /tmp/voter-cookie -d vote=a http://127.0.0.1:5000/ >/dev/null
+          for attempt in $(seq 1 30); do
+            count=$(docker compose -p lab06-ci -f docker-compose.production.yml exec -T db psql -U postgres -tAc "SELECT COUNT(*) FROM votes WHERE vote='a'" 2>/dev/null || true)
+            if [ "$count" = 1 ]; then echo 'Vote persisted in PostgreSQL'; exit 0; fi
+            sleep 1
+          done
+          echo 'Worker did not persist the vote' >&2
+          exit 1
       - name: Prepare scan reports
         run: mkdir -p security-reports
       - name: Scan repository dependencies with Trivy (Hard Fail)
